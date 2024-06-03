@@ -35,16 +35,21 @@ namespace CourseManagement_Helper.Helper
         {
             try
             {
-                UserModel userModel = new UserModel
+                if(user != null)
                 {
-                    UserId = user.UserId,
-                    Username = user.Username,
-                    Email = user.Email,
-                    Password = user.Password,
-                    Role = user.Role
-                };
+                    UserModel userModel = new UserModel
+                    {
+                        UserId = user.UserId,
+                        Username = user.Username,
+                        Email = user.Email,
+                        Password = user.Password,
+                        Role = user.Role
+                    };
+                    return userModel != null ? userModel : null;
+                }
 
-                return userModel != null ? userModel : null;
+                return null;
+               
             }
             catch (Exception ex)
             {

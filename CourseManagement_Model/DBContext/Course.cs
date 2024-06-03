@@ -19,6 +19,7 @@ namespace CourseManagement_Model.DBContext
         {
             this.Enrollment = new HashSet<Enrollment>();
             this.Material = new HashSet<Material>();
+            this.Assignment = new HashSet<Assignment>();
         }
     
         public int CourseId { get; set; }
@@ -33,5 +34,7 @@ namespace CourseManagement_Model.DBContext
         public virtual ICollection<Enrollment> Enrollment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Material> Material { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Assignment> Assignment { get; set; }
     }
 }

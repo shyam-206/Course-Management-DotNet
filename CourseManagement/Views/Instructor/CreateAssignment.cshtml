@@ -1,0 +1,30 @@
+﻿@model CourseManagement_Model.ViewModel.AssignmentModel
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <form method="post" action="CreateAssignment">
+                <input value="@Session["CourseId"]" name="CourseId"/>
+                <div class="form-group mt-2">
+                    <label for="Title">Title</label>
+                    <input type="text" name="Title" class="form-control"/>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="Description">Description</label>
+                    <input type="text" name="Description" class="form-control" />
+                </div>
+                <div class="form-group mt-2">
+                    <label for="DueDate">Due Date</label>
+                    <input name="DueDate" type="date" class="form-control"/>
+                </div>
+                <div class="form-group mt-2">
+                    <button type="submit" class="btn btn-primary">
+                        submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

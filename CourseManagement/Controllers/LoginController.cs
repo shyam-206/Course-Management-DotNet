@@ -38,7 +38,7 @@ namespace CourseManagement.Controllers
                         SessionHelper.UserId = userModel.UserId;
                         SessionHelper.Username = userModel.Username;
                         SessionHelper.Useremail = userModel.Email;
-                        SessionHelper.Role = userModel.Role;
+                        SessionHelper.Role = "Admin";
                         return RedirectToAction("Index", "Admin");
                     } 
                     if(userModel.Role == "Instructor")
@@ -46,7 +46,8 @@ namespace CourseManagement.Controllers
                         SessionHelper.UserId = userModel.UserId;
                         SessionHelper.Username = userModel.Username;
                         SessionHelper.Useremail = userModel.Email;
-                        SessionHelper.Role = userModel.Role;
+                        SessionHelper.Role = "Instructor";
+                        TempData["InstructorLogin"] = "IntructorLogin Successfully";
                         return RedirectToAction("Index", "Instructor");
                     }
                     if(userModel.Role == "Student")
@@ -54,7 +55,7 @@ namespace CourseManagement.Controllers
                         SessionHelper.UserId = userModel.UserId;
                         SessionHelper.Username = userModel.Username;
                         SessionHelper.Useremail = userModel.Email;
-                        SessionHelper.Role = userModel.Role;
+                        SessionHelper.Role = "Student";
                         return RedirectToAction("CourseList","Student");
                     }
                     return View(loginModel);

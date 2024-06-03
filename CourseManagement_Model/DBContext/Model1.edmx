@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CourseManagement557Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Assignment">
+          <Key>
+            <PropertyRef Name="AssignmentId" />
+          </Key>
+          <Property Name="AssignmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseId" Type="int" />
+          <Property Name="Title" Type="varchar" MaxLength="40" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="DueDate" Type="datetime" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Updated_at" Type="datetime" />
+        </EntityType>
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="CourseId" />
@@ -48,6 +60,18 @@
           <Property Name="Created_at" Type="datetime" />
           <Property Name="Updated_at" Type="datetime" />
         </EntityType>
+        <Association Name="FK__Assignmen__Cours__4316F928">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Course__Instruct__398D8EEE">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Course" Type="Self.Course" Multiplicity="*" />
@@ -97,10 +121,15 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CourseManagement557ModelStoreContainer">
+          <EntitySet Name="Assignment" EntityType="Self.Assignment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Enrollment" EntityType="Self.Enrollment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Assignmen__Cours__4316F928" Association="Self.FK__Assignmen__Cours__4316F928">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Assignment" EntitySet="Assignment" />
+          </AssociationSet>
           <AssociationSet Name="FK__Course__Instruct__398D8EEE" Association="Self.FK__Course__Instruct__398D8EEE">
             <End Role="Users" EntitySet="Users" />
             <End Role="Course" EntitySet="Course" />
@@ -157,6 +186,11 @@
             <End Role="Course" EntitySet="Course" />
             <End Role="Material" EntitySet="Material" />
           </AssociationSet>
+          <EntitySet Name="Assignment" EntityType="CourseManagement557Model.Assignment" />
+          <AssociationSet Name="FK__Assignmen__Cours__4316F928" Association="CourseManagement557Model.FK__Assignmen__Cours__4316F928">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Assignment" EntitySet="Assignment" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Course">
           <Key>
@@ -171,6 +205,7 @@
           <NavigationProperty Name="Users" Relationship="CourseManagement557Model.FK__Course__Instruct__398D8EEE" FromRole="Course" ToRole="Users" />
           <NavigationProperty Name="Enrollment" Relationship="CourseManagement557Model.FK__Enrollmen__Cours__3D5E1FD2" FromRole="Course" ToRole="Enrollment" />
           <NavigationProperty Name="Material" Relationship="CourseManagement557Model.FK__Material__Course__403A8C7D" FromRole="Course" ToRole="Material" />
+          <NavigationProperty Name="Assignment" Relationship="CourseManagement557Model.FK__Assignmen__Cours__4316F928" FromRole="Course" ToRole="Assignment" />
         </EntityType>
         <Association Name="FK__Course__Instruct__398D8EEE">
           <End Type="CourseManagement557Model.Users" Role="Users" Multiplicity="0..1" />
@@ -243,6 +278,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Assignment">
+          <Key>
+            <PropertyRef Name="AssignmentId" />
+          </Key>
+          <Property Name="AssignmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DueDate" Type="DateTime" Precision="3" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Course" Relationship="CourseManagement557Model.FK__Assignmen__Cours__4316F928" FromRole="Assignment" ToRole="Course" />
+        </EntityType>
+        <Association Name="FK__Assignmen__Cours__4316F928">
+          <End Type="CourseManagement557Model.Course" Role="Course" Multiplicity="0..1" />
+          <End Type="CourseManagement557Model.Assignment" Role="Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -293,6 +353,19 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="CourseId" ColumnName="CourseId" />
                 <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assignment">
+            <EntityTypeMapping TypeName="CourseManagement557Model.Assignment">
+              <MappingFragment StoreEntitySet="Assignment">
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="AssignmentId" ColumnName="AssignmentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

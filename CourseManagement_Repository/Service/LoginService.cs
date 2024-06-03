@@ -32,8 +32,11 @@ namespace CourseManagement_Repository.Service
             {
                 Users user = new Users();
                 user = _context.Users.Where(m => m.Email == loginModel.Email && m.Role == loginModel.Role && m.Password == loginModel.Password).FirstOrDefault();
-                UserModel userModel = LoginHelper.ConvertUserToUserModel(user);
-
+                UserModel userModel = new UserModel();
+                if(user != null)
+                {
+                    userModel = LoginHelper.ConvertUserToUserModel(user);
+                }
                 return userModel != null ? userModel : null;
             }
             catch (Exception ex)

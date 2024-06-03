@@ -10,5 +10,8 @@ namespace CourseManagement_Repository.Interface
     public interface InstructorRepository
     {
         bool UploadMaterial(MaterialModel materialModel);
+        bool CreateAssignment(AssignmentModel assignmentModel);
+
+        List<AssignmentModel> GetAssignmentModelList(int CourseId);
     }
 }

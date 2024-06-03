@@ -11,8 +11,14 @@
         <EntityTypeShape EntityType="CourseManagement557Model.Enrollment" Width="1.5" PointX="2.625" PointY="0.75" />
         <AssociationConnector Association="CourseManagement557Model.FK__Enrollmen__Cours__3D5E1FD2" />
         <AssociationConnector Association="CourseManagement557Model.FK__Enrollmen__UserI__3C69FB99" />
-        <EntityTypeShape EntityType="CourseManagement557Model.Material" Width="1.5" PointX="4" PointY="4.5" />
+        <EntityTypeShape EntityType="CourseManagement557Model.Material" Width="1.5" PointX="4.5" PointY="3.75" />
         <AssociationConnector Association="CourseManagement557Model.FK__Material__Course__403A8C7D" />
+        <EntityTypeShape EntityType="CourseManagement557Model.Assignment" Width="1.5" PointX="3" PointY="7.25" />
+        <AssociationConnector Association="CourseManagement557Model.FK__Assignmen__Cours__4316F928" ManuallyRouted="true" >
+          <ConnectorPoint PointX="2.25" PointY="6.2636454540668236" />
+          <ConnectorPoint PointX="3.609375" PointY="6.2636454540668236" />
+          <ConnectorPoint PointX="3.609375" PointY="7.25" />
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

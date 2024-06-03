@@ -57,6 +57,7 @@ namespace CourseManagement.Controllers
                 if (Request.Files.Count - 1 > i)
                     a += ",";
             }
+
             materialModel.FilePath = a;
 
             bool CheckSaveMaterial = instructorRepository.UploadMaterial(materialModel);
@@ -74,6 +75,58 @@ namespace CourseManagement.Controllers
             string uniqefilename = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
             file.SaveAs(HttpContext.Server.MapPath("~/Content/UploadFiles/") + uniqefilename);
             return uniqefilename;
+        }
+
+        public ActionResult AssignmentList(int CourseId)
+        {
+            try
+            {
+               Session["CourseId"] = CourseId;
+                List<AssignmentModel> list = instructorRepository.GetAssignmentModelList(CourseId);
+                return View(list);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public ActionResult CreateAssignment()
+        {
+            try
+            {
+                return View();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [HttpPost]
+        public ActionResult CreateAssignment(AssignmentModel assignmentModel)
+        {
+            try
+            {
+                bool CheckSaveAssignment = instructorRepository.CreateAssignment(assignmentModel);
+                if (CheckSaveAssignment)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(assignmentModel);
+                }
+               
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
