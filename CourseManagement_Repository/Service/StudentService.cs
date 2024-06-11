@@ -56,7 +56,7 @@ namespace CourseManagement_Repository.Service
             }
         }
 
-        public MaterialModel GetMaterial(int CourseId)
+        public MaterialModel GetMaterial(int CourseId,int MaterialId)
         {
             try
             {
@@ -73,6 +73,25 @@ namespace CourseManagement_Repository.Service
                 }
 
                 return materialModel != null ? materialModel : null;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public List<MaterialModel> GetMaterialList(int CourseId)
+        {
+            try
+            {
+                List<Material> list = _context.Material.Where(m => m.CourseId == CourseId).ToList();
+                List<MaterialModel> list2 = new List<MaterialModel>();
+                if(list != null)
+                {
+                    list2 = MaterialHelper.ConvertMaterialListToMaterialModelList(list);
+                }
+                return list2 != null ? list2 : null;
             }
             catch (Exception ex)
             {

@@ -12,6 +12,8 @@ namespace CourseManagement_Repository.Interface
         bool EnrollmentCourse(int CourseId,int UserId);
         List<CourseModel> GetAllCourseList(int UserId);
 
-        MaterialModel GetMaterial(int CourseId);
+        List<MaterialModel> GetMaterialList(int CourseId);
+        MaterialModel GetMaterial(int CourseId,int MaterialId);
+
     }
 }

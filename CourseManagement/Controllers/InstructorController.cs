@@ -72,7 +72,8 @@ namespace CourseManagement.Controllers
         }
         public string ConvertFileToString(HttpPostedFileBase file)
         {
-            string uniqefilename = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            /*string uniqefilename = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);*/
+            string uniqefilename = DateTime.Now.ToString("ddmmyyyyss")+ "-" + file.FileName;
             file.SaveAs(HttpContext.Server.MapPath("~/Content/UploadFiles/") + uniqefilename);
             return uniqefilename;
         }
