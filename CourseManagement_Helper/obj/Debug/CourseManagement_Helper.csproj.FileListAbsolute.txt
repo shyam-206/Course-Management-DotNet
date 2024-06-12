@@ -22,3 +22,15 @@ C:\Shyam Dhokiya\CourseManagement\CourseManagement_Helper\obj\Debug\CourseManage
 C:\Shyam Dhokiya\CourseManagement\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.csproj.CopyComplete
 C:\Shyam Dhokiya\CourseManagement\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.dll
 C:\Shyam Dhokiya\CourseManagement\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.pdb
+C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\bin\Debug\CourseManagement_Helper.dll
+C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\bin\Debug\CourseManagement_Helper.pdb
+C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\bin\Debug\CourseManagement_Model.dll
+C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\bin\Debug\EntityFramework.dll
+C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\bin\Debug\CourseManagement_Model.pdb
+C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\bin\Debug\CourseManagement_Model.dll.config
+C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\bin\Debug\EntityFramework.xml
+C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.csproj.CopyComplete
+C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.dll
+C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.pdb
