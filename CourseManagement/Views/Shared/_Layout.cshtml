@@ -22,17 +22,17 @@
             <span class="navbar-text h3 text-white">
                 Course Management
             </span>
-            <div class="d-flex align-content-center  mt-3 ">
+            <div class="d-flex align-content-center mt-3 gap-2">
                 <p class="text-white">@Session["Useremail"]</p>
-                @if (Session["Role"] == "Instructor")
+                @*@if (Session["Role"] == "Instructor")
                 {
                     <div>
                         <a href="~/Instructor/AssignmentList" class="text-white">List</a>
                     </div>
-                }
+                }*@
+                <a href="/Login/Logout" class="text-white text-decoration-none">Logout</a>
             </div>
             
-            <a href="/Login/Logout" class="text-white ">Logout</a>
         </div>
     </nav>
     <div class="body-content">

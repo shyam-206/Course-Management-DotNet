@@ -84,7 +84,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AssignmentModel.cs" />
     <Compile Include="ViewModel\CourseModel.cs" />
-    <Compile Include="ViewModel\EnrollmetnModel.cs" />
+    <Compile Include="ViewModel\EnrollmentModel.cs" />
     <Compile Include="ViewModel\LoginModel.cs" />
     <Compile Include="ViewModel\MaterialModel.cs" />
     <Compile Include="ViewModel\UserModel.cs" />

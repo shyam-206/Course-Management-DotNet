@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseManagement_Model.ViewModel
 {
-    public class EnrollmetnModel
+    public class EnrollmentModel
     {
         public int EnrollmentId { get; set; }
         public int UserId { get; set; }

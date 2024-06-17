@@ -375,6 +375,7 @@
     <Content Include="Views\Student\ViewMaterial.cshtml" />
     <Content Include="Views\Instructor\AssignmentList.cshtml" />
     <Content Include="Views\Instructor\CreateAssignment.cshtml" />
+    <Content Include="Views\Student\AssignmentList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,10 +14,11 @@ namespace CourseManagement.Controllers
     public class StudentController : Controller
     {
         private readonly IStudentRepository studentRepository;
-
+        private readonly InstructorRepository instructorRepository;
         public StudentController()
         {
             studentRepository = new StudentService();
+            instructorRepository = new InstructorService();
         }
         public ActionResult Index()
         {
@@ -51,12 +52,6 @@ namespace CourseManagement.Controllers
             }
 
         }
-
-        public ActionResult PageNotFound()
-        {
-            return View("ErrorPage");
-        }
-
         public ActionResult ViewMaterial(int CourseId)
         {
             List<MaterialModel> materialModelList = studentRepository.GetMaterialList(CourseId);
@@ -87,9 +82,21 @@ namespace CourseManagement.Controllers
             else
             {
                 string fullPath = Path.Combine(path, file);
-                return File(fullPath, "i", file);
+                return File(fullPath, "image/jpg", file);
 
             }
+        }
+
+        public ActionResult AssignmentList(int CourseId)
+        {
+            List<AssignmentModel> assignmentModelList = instructorRepository.GetAssignmentModelList(CourseId);
+            if(assignmentModelList != null)
+            {
+                return View(assignmentModelList);
+            }
+
+            return RedirectToAction("CourseList");
+            
         }
 
     }

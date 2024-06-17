@@ -1,7 +1,7 @@
 ﻿@model List<CourseManagement_Model.ViewModel.CourseModel>
 <div class="container mt-5">
     <div class="card mt-3">
-        <div class="card-body">
+        <div class="card-body" style="box-shadow: 0px 10px 34px -10px rgba(0, 0, 0, 0.24); background: #fff; border-radius: 5px; ">
             <table class="table">
                 <thead>
                     <tr>
@@ -9,6 +9,7 @@
                         <td>Description</td>
                         <td>Action</td>
                         <td>Material</td>
+                        <td>Assignment List</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,19 +21,31 @@
                             <tr>
                                 <td>@item.Title</td>
                                 <td>@item.Description</td>
-                                <td>
-                                    @if(item.IsEnrollment != true)
-                                    {
-                                        <a href="~/Student/EnrollCourse?CourseId=@item.CourseId" class="btn btn-success">Enroll course</a>
-                                    }
-                                    else
-                                    {
-                                        <a class="btn btn-info" disabled>Already Enroll</a>
-                                    }
-                                </td>
-                                <td>
-                                    <a href="~/Student/ViewMaterial?CourseId=@item.CourseId" class="btn btn-info">View Material</a>
-                                </td>
+
+                                @if (item.IsEnrollment != true)
+                                {
+                                    <td>
+                                        <a href="~/Student/EnrollCourse?CourseId=@item.CourseId" class="btn btn-outline-success btn-sm">Enroll course</a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info btn-sm">Not Available</a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info btn-sm">Not Available</a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <a class="btn btn-outline-primary btn-sm" disabled>Already Enroll</a>
+                                    </td>
+                                    <td>
+                                        <a href="~/Student/ViewMaterial?CourseId=@item.CourseId" class="btn btn-warning btn-sm">View Material</a>
+                                    </td>
+                                    <td>
+                                        <a href="~/Student/AssignmentList?CourseId=@item.CourseId" class="btn btn-warning btn-sm">Assignments</a>
+                                    </td>
+                                }
                             </tr>
                         }
 

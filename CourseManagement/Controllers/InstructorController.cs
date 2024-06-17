@@ -82,8 +82,9 @@ namespace CourseManagement.Controllers
         {
             try
             {
-               Session["CourseId"] = CourseId;
+                Session["CourseId"] = CourseId;
                 List<AssignmentModel> list = instructorRepository.GetAssignmentModelList(CourseId);
+
                 return View(list);
 
             }
