@@ -13,5 +13,6 @@ namespace CourseManagement_Model.ViewModel
         public string Description { get; set; }
         public int InstructorId { get; set; }
         public bool IsEnrollment { get; set; }
+        public string InstructorName { get; set; }
     }
 }

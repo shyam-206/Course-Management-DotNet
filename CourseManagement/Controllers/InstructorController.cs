@@ -1,4 +1,5 @@
-﻿using CourseManagement.Session;
+﻿using CourseManagement.CustomFilter;
+using CourseManagement.Session;
 using CourseManagement_Model.ViewModel;
 using CourseManagement_Repository.Interface;
 using CourseManagement_Repository.Service;
@@ -11,6 +12,8 @@ using System.Web.Mvc;
 
 namespace CourseManagement.Controllers
 {
+    [CustomAuthentication]
+    [CustomInstructorAuthorization]
     public class InstructorController : Controller
     {
         private readonly ICourseRepository courseRepository;
@@ -26,8 +29,10 @@ namespace CourseManagement.Controllers
             List<CourseModel> courseModelList = courseRepository.GetCourseList(Id);
             return View(courseModelList);
         }
+        [HttpGet]
         public ActionResult CreateCourse()
         {
+            
             return View();
         }
 
@@ -156,6 +161,25 @@ namespace CourseManagement.Controllers
 
                 throw ex;
             }
+        }
+
+        public ActionResult EditCourse(int CourseId)
+        {
+            CourseModel courseModel = instructorRepository.GetCourseModelById(CourseId);
+            return View("CreateCourse",courseModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditCourse(CourseModel courseModel)
+        {
+            bool EditOrNot = instructorRepository.EditCourse(courseModel);
+            if (EditOrNot)
+            {
+
+                return RedirectToAction("Index");   
+            }
+
+            return View("CreateCourse", courseModel);
         }
     }
 }

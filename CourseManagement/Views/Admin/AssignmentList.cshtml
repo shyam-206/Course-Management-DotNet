@@ -1,4 +1,5 @@
-﻿@model List<CourseManagement_Model.ViewModel.MaterialModel>
+﻿@model List<CourseManagement_Model.ViewModel.AssignmentModel>
+
 <style>
     .card {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -16,15 +17,16 @@
         cursor: not-allowed;
     }
 </style>
-<div class="container mt-2">
-    <div class="card">
+<div class="container mt-3">
+    <div class="card mt-5">
         <div class="card-body">
-
             <table class="table table-bordered table-hover">
-                <thead>
+                <thead class="table-primary">
                     <tr>
-                        <td>Title</td>
-                        <td>File Name</td>
+                        <th>Title</th>
+                        <th>Desription</th>
+                        <th>Date</th>
+                        <th>Course Name</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,18 +36,20 @@
                         {
                             <tr>
                                 <td>@item.Title</td>
-                                <td>
-                                    @foreach (var file in item.Files)
-                                    {
-
-                                        <a href="~/Student/Download?file=@file" class="mx-2">@file</a>
-                                    }
-                                </td>
+                                <td>@item.Description</td>
+                                <td>@item.DueDate.ToString().Split(' ')[0]</td>
+                                <td>@item.CourseName</td>
                             </tr>
                         }
                     }
                 </tbody>
             </table>
+            <div>
+                <a href="Index" class="btn btn-primary btn-sm mt-3">Back To DashBoard</a>
+            </div>
         </div>
+
     </div>
 </div>
+
+

@@ -14,5 +14,8 @@ namespace CourseManagement_Repository.Interface
         List<AssignmentModel> GetAssignmentModelList(int CourseId);
         List<SubmitAssignmentModel> GetSubmitAssignmentList(int UserId);
         bool SubmitReview(SubmitAssignmentModel submitAssignment);
+
+        CourseModel GetCourseModelById(int CourseId);
+        bool EditCourse(CourseModel courseModel);
     }
 }

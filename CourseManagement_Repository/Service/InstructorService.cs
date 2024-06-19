@@ -39,6 +39,31 @@ namespace CourseManagement_Repository.Service
             }
         }
 
+        public bool EditCourse(CourseModel courseModel)
+        {
+            try
+            {
+                int checkEditOrNot = 0;
+                Course course = _context.Course.Where(m => m.CourseId == courseModel.CourseId).FirstOrDefault();
+                if(course != null)
+                {
+                    course.CourseId = courseModel.CourseId;
+                    course.Title = courseModel.Title;
+                    course.Description = courseModel.Description;
+                    course.InstructorId = courseModel.InstructorId;
+                    course.Updated_at = DateTime.Now;
+                    checkEditOrNot =_context.SaveChanges();
+                }
+
+                return checkEditOrNot > 0 ? true : false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public List<AssignmentModel> GetAssignmentModelList(int CourseId)
         {
             try
@@ -52,6 +77,30 @@ namespace CourseManagement_Repository.Service
             {
 
                 throw;
+            }
+        }
+
+        public CourseModel GetCourseModelById(int CourseId)
+        {
+            try
+            {
+                CourseModel courseModel = new CourseModel();
+                Course course = _context.Course.Where(m => m.CourseId == CourseId).FirstOrDefault();
+                if(course != null)
+                {
+                    courseModel.CourseId = course.CourseId;
+                    courseModel.Title = course.Title;
+                    courseModel.Description = course.Description;
+                    courseModel.InstructorId = (int)course.InstructorId;
+                }
+
+                return courseModel;
+                
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
 

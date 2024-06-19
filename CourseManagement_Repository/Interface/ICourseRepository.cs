@@ -11,5 +11,6 @@ namespace CourseManagement_Repository.Interface
     {
         bool AddCourse(CourseModel courseModel);
         List<CourseModel> GetCourseList(int InstructorId);
+
     }
 }

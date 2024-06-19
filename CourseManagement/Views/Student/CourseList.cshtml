@@ -1,9 +1,28 @@
 ﻿@model List<CourseManagement_Model.ViewModel.CourseModel>
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    .table th, .table td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .btn-disabled {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        cursor: not-allowed;
+    }
+</style>
 <div class="container mt-5">
     <div class="card mt-3">
-        <div class="card-body" style="box-shadow: 0px 10px 34px -10px rgba(0, 0, 0, 0.24); background: #fff; border-radius: 5px; ">
-            <table class="table">
-                <thead>
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <thead class="table-primary">
                     <tr>
                         <td>Title</td>
                         <td>Description</td>

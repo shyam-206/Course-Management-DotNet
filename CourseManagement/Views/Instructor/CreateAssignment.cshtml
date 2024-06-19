@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-body">
             <form method="post" action="CreateAssignment">
-                <input value="@Session["CourseId"]" name="CourseId"/>
+                <input value="@Session["CourseId"]" name="CourseId" hidden/>
                 <div class="form-group mt-2">
                     <label for="Title">Title</label>
                     <input type="text" name="Title" class="form-control"/>

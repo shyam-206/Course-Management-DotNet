@@ -7,8 +7,25 @@
         toastr.success('@TempData["Submit Review"]')
     </script>
 }
+<style>
+    .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .btn-disabled {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        cursor: not-allowed;
+    }
+</style>
 <div class="container mt-3">
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover">
         <thead class="table-primary">
             <tr>
                 <th>Assignment Title</th>

@@ -1,4 +1,5 @@
-﻿using CourseManagement.Session;
+﻿using CourseManagement.CustomFilter;
+using CourseManagement.Session;
 using CourseManagement_Model.ViewModel;
 using CourseManagement_Repository.Interface;
 using CourseManagement_Repository.Service;
@@ -11,6 +12,8 @@ using System.Web.Mvc;
 
 namespace CourseManagement.Controllers
 {
+    [CustomAuthentication]
+    [CustomStudentAuthorization]
     public class StudentController : Controller
     {
         private readonly IStudentRepository studentRepository;

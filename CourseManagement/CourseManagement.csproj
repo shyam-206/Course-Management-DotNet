@@ -148,6 +148,10 @@
     <Compile Include="Controllers\InstructorController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="CustomFilter\CustomAdminAuthorizationAttribute.cs" />
+    <Compile Include="CustomFilter\CustomAuthenticationAttribute.cs" />
+    <Compile Include="CustomFilter\CustomInstructorAuthorizationAttribute.cs" />
+    <Compile Include="CustomFilter\CustomStudentAuthorizationAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -377,7 +381,8 @@
     <Content Include="Views\Instructor\CreateAssignment.cshtml" />
     <Content Include="Views\Student\AssignmentList.cshtml" />
     <Content Include="Views\Instructor\ReviewAssignment.cshtml" />
-    <Content Include="Views\Instructor\GradeFeedbackPage.cshtml" />
+    <Content Include="Views\Admin\CourseList.cshtml" />
+    <Content Include="Views\Admin\AssignmentList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

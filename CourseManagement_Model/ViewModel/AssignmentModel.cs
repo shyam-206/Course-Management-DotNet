@@ -16,5 +16,6 @@ namespace CourseManagement_Model.ViewModel
         public bool Is_submit { get; set; }
         public decimal Grade { get; set; }
         public string Feedback { get; set; }
+        public string CourseName { get; set; }
     }
 }
