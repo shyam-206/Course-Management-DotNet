@@ -30,5 +30,6 @@ namespace CourseManagement_Model.DBContext
         public virtual DbSet<Enrollment> Enrollment { get; set; }
         public virtual DbSet<Material> Material { get; set; }
         public virtual DbSet<Assignment> Assignment { get; set; }
+        public virtual DbSet<Submission> Submission { get; set; }
     }
 }

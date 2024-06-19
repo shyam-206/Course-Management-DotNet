@@ -12,5 +12,7 @@ namespace CourseManagement_Repository.Interface
         bool UploadMaterial(MaterialModel materialModel);
         bool CreateAssignment(AssignmentModel assignmentModel);
         List<AssignmentModel> GetAssignmentModelList(int CourseId);
+        List<SubmitAssignmentModel> GetSubmitAssignmentList(int UserId);
+        bool SubmitReview(SubmitAssignmentModel submitAssignment);
     }
 }

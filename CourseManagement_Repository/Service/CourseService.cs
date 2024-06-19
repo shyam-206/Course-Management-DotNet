@@ -31,7 +31,7 @@ namespace CourseManagement_Repository.Service
             }
         }
 
-        public List<CourseModel> GetCourseList(int InstructorId = 2)
+        public List<CourseModel> GetCourseList(int InstructorId)
         {
             try
             {

@@ -14,6 +14,12 @@ namespace CourseManagement_Model.DBContext
     
     public partial class Assignment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Assignment()
+        {
+            this.Submission = new HashSet<Submission>();
+        }
+    
         public int AssignmentId { get; set; }
         public Nullable<int> CourseId { get; set; }
         public string Title { get; set; }
@@ -23,5 +29,7 @@ namespace CourseManagement_Model.DBContext
         public Nullable<System.DateTime> Updated_at { get; set; }
     
         public virtual Course Course { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Submission> Submission { get; set; }
     }
 }

@@ -43,18 +43,52 @@ namespace CourseManagement_Repository.Service
         {
             try
             {
-                List<AssignmentModel> assignmentModelList = new List<AssignmentModel>();
                 List<Assignment> list = _context.Assignment.Where(m => m.CourseId == CourseId).ToList();
-                if(list != null)
-                {
-                    assignmentModelList = InstructorHelper.ConvertAssignmentListToAssignmentModelList(list);
-                }
+                List<AssignmentModel> assignmentModelList = InstructorHelper.ConvertAssignmentListToAssignmentModelList(list);
                 return assignmentModelList != null ? assignmentModelList : null;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<SubmitAssignmentModel> GetSubmitAssignmentList(int UserId)
+        {
+            try
+            {
+                List<Submission> submissions = _context.Submission.Where(m => m.Assignment.Course.InstructorId == UserId).ToList();
+                List<SubmitAssignmentModel> list = new List<SubmitAssignmentModel>();
+                list = InstructorHelper.ConvertSubmissionListToSubmissionModelList(submissions);
+                return list != null ? list : null;
             }
             catch (Exception ex)
             {
 
                 throw ex;
+            }
+            
+        }
+
+        public bool SubmitReview(SubmitAssignmentModel submitAssignment)
+        {
+            try
+            {
+                int saveGrade = 0;
+                Submission submission = _context.Submission.Where(m => m.SubmissionId == submitAssignment.SubmissionId).FirstOrDefault();
+                submission.Grade = submitAssignment.Grade;
+                submission.Feedback = submitAssignment.Feedback;
+                submission.Graded_at = DateTime.Now;
+                saveGrade = _context.SaveChanges();
+
+                return saveGrade > 0 ? true : false;
+            } 
+            catch (Exception)
+            {
+
+                throw;
             }
         }
 
@@ -81,5 +115,7 @@ namespace CourseManagement_Repository.Service
                 throw ex;
             }
         }
+
+
     }
 }

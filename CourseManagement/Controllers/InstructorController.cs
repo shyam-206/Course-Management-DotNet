@@ -73,7 +73,7 @@ namespace CourseManagement.Controllers
         public string ConvertFileToString(HttpPostedFileBase file)
         {
             /*string uniqefilename = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);*/
-            string uniqefilename = DateTime.Now.ToString("ddmmyyyyss")+ "-" + file.FileName;
+            string uniqefilename = DateTime.Now.ToString("ddmmyyyyss") + "-" + file.FileName;
             file.SaveAs(HttpContext.Server.MapPath("~/Content/UploadFiles/") + uniqefilename);
             return uniqefilename;
         }
@@ -122,12 +122,39 @@ namespace CourseManagement.Controllers
                 {
                     return View(assignmentModel);
                 }
-               
+
             }
             catch (Exception)
             {
 
                 throw;
+            }
+        }
+
+        public ActionResult ReviewAssignment()
+        {
+            List<SubmitAssignmentModel> list = new List<SubmitAssignmentModel>();
+            int UserId = SessionHelper.UserId;
+            list = instructorRepository.GetSubmitAssignmentList(UserId);
+            return View(list);
+        }
+
+        public ActionResult SubmitReview(SubmitAssignmentModel submitReview)
+        {
+            try
+            {
+                bool SaveReview = instructorRepository.SubmitReview(submitReview);
+                if (SaveReview)
+                {
+                    TempData["Submit Review"] = "Successfully submit review";
+                }
+                return RedirectToAction("ReviewAssignment");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }

@@ -13,5 +13,8 @@ namespace CourseManagement_Model.ViewModel
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime DueDate { get; set; }
+        public bool Is_submit { get; set; }
+        public decimal Grade { get; set; }
+        public string Feedback { get; set; }
     }
 }

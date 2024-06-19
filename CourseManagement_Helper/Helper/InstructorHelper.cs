@@ -36,5 +36,33 @@ namespace CourseManagement_Helper.Helper
                 throw ex;
             }
         }
+
+        public static List<SubmitAssignmentModel> ConvertSubmissionListToSubmissionModelList(List<Submission> submissions)
+        {
+            try
+            {
+                List<SubmitAssignmentModel> submitAssignmentModelList = new List<SubmitAssignmentModel>();
+                if(submissions != null)
+                {
+                    foreach(var item in submissions)
+                    {
+                        SubmitAssignmentModel submitAssignmentModel = new SubmitAssignmentModel();
+                        submitAssignmentModel.SubmissionId = item.SubmissionId;
+                        submitAssignmentModel.AssignmentId = (int)item.AssignmentId;
+                        submitAssignmentModel.UserId = (int)item.UserId;
+                        submitAssignmentModel.StudentName = item.Users.Username;
+                        submitAssignmentModel.AssignmentTitle = item.Assignment.Title;
+                        submitAssignmentModel.AssignmentDescription = item.Assignment.Description;
+                        submitAssignmentModelList.Add(submitAssignmentModel);
+                    }
+                }
+                return submitAssignmentModelList;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

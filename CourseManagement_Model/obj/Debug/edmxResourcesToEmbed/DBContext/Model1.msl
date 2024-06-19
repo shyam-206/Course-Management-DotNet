@@ -61,5 +61,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Submission">
+      <EntityTypeMapping TypeName="CourseManagement557Model.Submission">
+        <MappingFragment StoreEntitySet="Submission">
+          <ScalarProperty Name="Graded_at" ColumnName="Graded_at" />
+          <ScalarProperty Name="Submitted_at" ColumnName="Submitted_at" />
+          <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AssignmentId" ColumnName="AssignmentId" />
+          <ScalarProperty Name="SubmissionId" ColumnName="SubmissionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

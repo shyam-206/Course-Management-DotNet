@@ -89,14 +89,33 @@ namespace CourseManagement.Controllers
 
         public ActionResult AssignmentList(int CourseId)
         {
-            List<AssignmentModel> assignmentModelList = instructorRepository.GetAssignmentModelList(CourseId);
+            List<AssignmentModel> assignmentModelList = studentRepository.GetAssignmentModelList(CourseId,SessionHelper.UserId);
             if(assignmentModelList != null)
             {
                 return View(assignmentModelList);
             }
 
-            return RedirectToAction("CourseList");
-            
+            return RedirectToAction("CourseList");       
+        }
+
+        public ActionResult SubmitAssignment(int AssignmentId)
+        {
+            try
+            {
+                int UserId = SessionHelper.UserId;
+                bool SaveAssignment = studentRepository.SubmitAssignment(AssignmentId, UserId);
+                if (SaveAssignment)
+                {
+                    TempData["Save Assignment"] = "Submitted Assignment";
+                    return RedirectToAction("CourseList");
+                }
+                return View("AssignmentList");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
     }

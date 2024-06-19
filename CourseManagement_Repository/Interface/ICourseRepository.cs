@@ -10,7 +10,6 @@ namespace CourseManagement_Repository.Interface
     public interface ICourseRepository
     {
         bool AddCourse(CourseModel courseModel);
-
         List<CourseModel> GetCourseList(int InstructorId);
     }
 }

@@ -2,20 +2,21 @@
 @model List<CourseManagement_Model.ViewModel.AssignmentModel>
 <div class="container mt-3">
 
-   @* <div class="d-flex">
-        <a class="btn btn-success btn-sm" href="CreateAssignment">
-            Create Assignment
-        </a>
-    </div>*@
-    <div class="card mt-3">
+    @* <div class="d-flex">
+            <a class="btn btn-success btn-sm" href="CreateAssignment">
+                Create Assignment
+            </a>
+        </div>*@
+    <div class="card mt-5">
         <div class="card-body">
             <table class="table">
-                <thead>
+                <thead class="table-primary">
                     <tr>
-                        <td>Title</td>
-                        <td>Desription</td>
-                        <td>Date</td>
-                        <td>Complete Assignment</td>
+                        <th>Title</th>
+                        <th>Desription</th>
+                        <th>Date</th>
+                        <th>Complete Assignment</th>
+                        <th>Grade Preview</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,45 @@
                                 <td>@item.Title</td>
                                 <td>@item.Description</td>
                                 <td>@item.DueDate.ToString().Split(' ')[0]</td>
+
+                                @if (item.Is_submit != true)
+                                {
+                                    if (item.DueDate > DateTime.Now)
+                                    {
+
+                                        <td><a href="~/Student/SubmitAssignment?AssignmentId=@item.AssignmentId" class="btn btn-sm btn-outline-success">Submit Assignment </a></td>
+                                    }
+                                    else
+                                    {
+                                        <td>Date is Over</td>
+                                    }
+                                    <td>Not Available Grade</td>
+                                }
+                                else
+                                {
+                                    <td class="text-primary">Alredy Submit</td>
+                                    <td>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                            View Grade
+                                        </button>
+                                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Grade Review</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p><span class="h6">Grade : </span>@item.Grade</p>
+                                                        <p><span class="h6">Feedback : </span>@item.Feedback</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                }
                             </tr>
                         }
                     }

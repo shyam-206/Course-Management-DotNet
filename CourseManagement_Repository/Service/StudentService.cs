@@ -56,6 +56,54 @@ namespace CourseManagement_Repository.Service
             }
         }
 
+        public List<UserModel> GetAllStudentList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<AssignmentModel> GetAssignmentModelList(int CourseId, int UserId)
+        {
+            try
+            {
+               
+                List<Assignment> list = _context.Assignment.Where(m => m.CourseId == CourseId).ToList();
+                List<AssignmentModel>  assignmentModelList = InstructorHelper.ConvertAssignmentListToAssignmentModelList(list);
+                foreach(var item in assignmentModelList)
+                {
+                    /*item.Is_submit = _context.Submission.FirstOrDefault(m => m.AssignmentId == item.AssignmentId && m.UserId == UserId) != null ? true : false;
+                    item.Grade = (decimal)_context.Submission.FirstOrDefault(m => m.AssignmentId == item.AssignmentId && m.UserId == UserId).Grade;*/
+                    Submission submission = _context.Submission.Where(m => m.AssignmentId == item.AssignmentId && m.UserId == UserId).FirstOrDefault();
+                    if(submission != null)
+                    {
+                        item.Is_submit = true;
+                        if(submission.Grade != null && submission.Feedback != null)
+                        {
+                            item.Grade = (decimal)submission.Grade;
+                            item.Feedback = submission.Feedback;
+                        }
+                        else
+                        {
+                            item.Grade = 0;
+                            item.Feedback = "Review Pending";
+                        }
+                        
+                    }
+                    else
+                    {
+                        item.Is_submit = false;
+                    }
+                    
+
+                }
+                return assignmentModelList != null ? assignmentModelList : null;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public MaterialModel GetMaterial(int CourseId,int MaterialId)
         {
             try
@@ -97,6 +145,34 @@ namespace CourseManagement_Repository.Service
             {
 
                 throw ex;
+            }
+        }
+
+        public bool SubmitAssignment(int AssignmentId, int UserId)
+        {
+            try
+            {
+                int SaveAssignment = 0;
+                Assignment assignment = _context.Assignment.Where(m => m.AssignmentId == AssignmentId).FirstOrDefault();
+                Submission submission = new Submission();
+                if(assignment != null)
+                {
+                    submission.AssignmentId = assignment.AssignmentId;
+                    submission.UserId = UserId;
+                    submission.Submitted_at = DateTime.Now;
+                    _context.Submission.Add(submission);
+                    SaveAssignment = _context.SaveChanges();
+
+                }
+
+                
+                return SaveAssignment > 0 ? true : false;
+
+            } 
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

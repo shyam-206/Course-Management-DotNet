@@ -48,6 +48,18 @@
           <Property Name="Created_at" Type="datetime" />
           <Property Name="Updated_at" Type="datetime" />
         </EntityType>
+        <EntityType Name="Submission">
+          <Key>
+            <PropertyRef Name="SubmissionId" />
+          </Key>
+          <Property Name="SubmissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssignmentId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Grade" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Feedback" Type="varchar" MaxLength="50" />
+          <Property Name="Submitted_at" Type="datetime" />
+          <Property Name="Graded_at" Type="datetime" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserId" />
@@ -120,11 +132,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Submissio__Assig__49C3F6B7">
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="0..1" />
+          <End Role="Submission" Type="Self.Submission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assignment">
+              <PropertyRef Name="AssignmentId" />
+            </Principal>
+            <Dependent Role="Submission">
+              <PropertyRef Name="AssignmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Submissio__UserI__4AB81AF0">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Submission" Type="Self.Submission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Submission">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CourseManagement557ModelStoreContainer">
           <EntitySet Name="Assignment" EntityType="Self.Assignment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Enrollment" EntityType="Self.Enrollment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Submission" EntityType="Self.Submission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Assignmen__Cours__4316F928" Association="Self.FK__Assignmen__Cours__4316F928">
             <End Role="Course" EntitySet="Course" />
@@ -146,6 +183,14 @@
             <End Role="Course" EntitySet="Course" />
             <End Role="Material" EntitySet="Material" />
           </AssociationSet>
+          <AssociationSet Name="FK__Submissio__Assig__49C3F6B7" Association="Self.FK__Submissio__Assig__49C3F6B7">
+            <End Role="Assignment" EntitySet="Assignment" />
+            <End Role="Submission" EntitySet="Submission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Submissio__UserI__4AB81AF0" Association="Self.FK__Submissio__UserI__4AB81AF0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Submission" EntitySet="Submission" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -164,6 +209,7 @@
           <Property Name="Updated_at" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Course" Relationship="CourseManagement557Model.FK__Course__Instruct__398D8EEE" FromRole="Users" ToRole="Course" />
           <NavigationProperty Name="Enrollment" Relationship="CourseManagement557Model.FK__Enrollmen__UserI__3C69FB99" FromRole="Users" ToRole="Enrollment" />
+          <NavigationProperty Name="Submission" Relationship="CourseManagement557Model.FK__Submissio__UserI__4AB81AF0" FromRole="Users" ToRole="Submission" />
         </EntityType>
         <EntityContainer Name="CourseManagement557Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Self.Users" />
@@ -190,6 +236,15 @@
           <AssociationSet Name="FK__Assignmen__Cours__4316F928" Association="CourseManagement557Model.FK__Assignmen__Cours__4316F928">
             <End Role="Course" EntitySet="Course" />
             <End Role="Assignment" EntitySet="Assignment" />
+          </AssociationSet>
+          <EntitySet Name="Submission" EntityType="CourseManagement557Model.Submission" />
+          <AssociationSet Name="FK__Submissio__Assig__49C3F6B7" Association="CourseManagement557Model.FK__Submissio__Assig__49C3F6B7">
+            <End Role="Assignment" EntitySet="Assignment" />
+            <End Role="Submission" EntitySet="Submission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Submissio__UserI__4AB81AF0" Association="CourseManagement557Model.FK__Submissio__UserI__4AB81AF0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Submission" EntitySet="Submission" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Course">
@@ -290,6 +345,7 @@
           <Property Name="Created_at" Type="DateTime" Precision="3" />
           <Property Name="Updated_at" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Course" Relationship="CourseManagement557Model.FK__Assignmen__Cours__4316F928" FromRole="Assignment" ToRole="Course" />
+          <NavigationProperty Name="Submission" Relationship="CourseManagement557Model.FK__Submissio__Assig__49C3F6B7" FromRole="Assignment" ToRole="Submission" />
         </EntityType>
         <Association Name="FK__Assignmen__Cours__4316F928">
           <End Type="CourseManagement557Model.Course" Role="Course" Multiplicity="0..1" />
@@ -300,6 +356,44 @@
             </Principal>
             <Dependent Role="Assignment">
               <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Submission">
+          <Key>
+            <PropertyRef Name="SubmissionId" />
+          </Key>
+          <Property Name="SubmissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssignmentId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Grade" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Feedback" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Submitted_at" Type="DateTime" Precision="3" />
+          <Property Name="Graded_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Assignment" Relationship="CourseManagement557Model.FK__Submissio__Assig__49C3F6B7" FromRole="Submission" ToRole="Assignment" />
+          <NavigationProperty Name="Users" Relationship="CourseManagement557Model.FK__Submissio__UserI__4AB81AF0" FromRole="Submission" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK__Submissio__Assig__49C3F6B7">
+          <End Type="CourseManagement557Model.Assignment" Role="Assignment" Multiplicity="0..1" />
+          <End Type="CourseManagement557Model.Submission" Role="Submission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assignment">
+              <PropertyRef Name="AssignmentId" />
+            </Principal>
+            <Dependent Role="Submission">
+              <PropertyRef Name="AssignmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Submissio__UserI__4AB81AF0">
+          <End Type="CourseManagement557Model.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="CourseManagement557Model.Submission" Role="Submission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Submission">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -366,6 +460,19 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="CourseId" ColumnName="CourseId" />
                 <ScalarProperty Name="AssignmentId" ColumnName="AssignmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Submission">
+            <EntityTypeMapping TypeName="CourseManagement557Model.Submission">
+              <MappingFragment StoreEntitySet="Submission">
+                <ScalarProperty Name="Graded_at" ColumnName="Graded_at" />
+                <ScalarProperty Name="Submitted_at" ColumnName="Submitted_at" />
+                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AssignmentId" ColumnName="AssignmentId" />
+                <ScalarProperty Name="SubmissionId" ColumnName="SubmissionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

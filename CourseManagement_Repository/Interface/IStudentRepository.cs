@@ -14,6 +14,8 @@ namespace CourseManagement_Repository.Interface
         List<MaterialModel> GetMaterialList(int CourseId);
         MaterialModel GetMaterial(int CourseId,int MaterialId);
         List<UserModel> GetAllStudentList();
+        List<AssignmentModel> GetAssignmentModelList(int CourseId,int UserId);
+        bool SubmitAssignment(int AssignmentId, int UserId);
 
     }
 }
