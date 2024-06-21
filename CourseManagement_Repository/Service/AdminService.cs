@@ -13,6 +13,15 @@ namespace CourseManagement_Repository.Service
     public class AdminService : IAdminRepository
     {
         private readonly CourseManagement557Entities _context = new CourseManagement557Entities();
+
+        public List<MaterialModel> GetAllMaterial()
+        {
+            List<Material> materials = _context.Material.ToList();
+            List<MaterialModel> materialModelList = new List<MaterialModel>();
+            materialModelList = MaterialHelper.ConvertMaterialListToMaterialModelList(materials);
+            return materialModelList;
+        }
+
         public List<CourseModel> GetALLCourseList()
         {
             List<Course> courses = _context.Course.ToList();
@@ -21,11 +30,45 @@ namespace CourseManagement_Repository.Service
 
         }
 
+        public List<EnrollmentModel> GetAllEnrollmentList()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<AssignmentModel> GetAssignmentList()
         {
             List<Assignment> assignments = _context.Assignment.ToList();
             List<AssignmentModel> assignmentModelList = AdminHelper.ConvertAssignmentListToAssignmentModelList(assignments);
             return assignmentModelList;
+        }
+
+        public int GetSubmissionCount()
+        {
+            try
+            {
+                int SubmissionCount = 0;
+                List<Submission> submissions = _context.Submission.ToList();
+                SubmissionCount = submissions.Count();
+                return SubmissionCount;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public List<SubmitAssignmentModel> GetSubmissionModelList()
+        {
+            List<Submission> submissions = _context.Submission.ToList();
+            List<SubmitAssignmentModel> submitAssignmentModelList = AdminHelper.ConvertSubmissionToSubmissionModelList(submissions);
+            foreach(var item in submitAssignmentModelList)
+            {
+                Assignment assignment = _context.Assignment.Where(m => m.AssignmentId == item.AssignmentId).FirstOrDefault();
+                item.InstructorName = assignment.Course.Users.Username;
+                item.CourseTitle = assignment.Course.Title;
+            }
+            return submitAssignmentModelList;
         }
 
         public int GetTotalNumberOfInstructorCount()
@@ -43,6 +86,12 @@ namespace CourseManagement_Repository.Service
             TotalNumberOfStudentCount = users.Count();
             return TotalNumberOfStudentCount;
 
+        }
+
+        public int GetMaterialCount()
+        {
+            int MaterialCount = _context.Material.ToList().Count();
+            return MaterialCount;
         }
     }
 }

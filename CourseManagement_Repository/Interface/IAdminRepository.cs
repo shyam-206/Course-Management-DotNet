@@ -13,6 +13,11 @@ namespace CourseManagement_Repository.Interface
         List<AssignmentModel> GetAssignmentList();
         int GetTotalNumberOfInstructorCount();
         int GetTotalNumberOfStudentCount();
+        int GetSubmissionCount();
+        int GetMaterialCount();
+        List<SubmitAssignmentModel> GetSubmissionModelList();
+        List<MaterialModel> GetAllMaterial();
+        List<EnrollmentModel> GetAllEnrollmentList();
 
     }
 }

@@ -1,0 +1,54 @@
+﻿@model List<CourseManagement_Model.ViewModel.MaterialModel>
+<style>
+    .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .btn-disabled {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        cursor: not-allowed;
+    }
+</style>
+<div class="container mt-2">
+    <div class="card">
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <td>Course Name</td>
+                        <td>Materila Name</td>
+                        <td>File Name</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.CourseTitle</td>
+                                <td>@item.Title</td>
+                                <td>
+                                    @foreach (var file in item.Files)
+                                    {
+
+                                        <a href="~/Admin/ViewMaterial?file=@file" class="mx-2">@file</a>
+                                        
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

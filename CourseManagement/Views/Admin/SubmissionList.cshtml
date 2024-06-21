@@ -1,0 +1,36 @@
+﻿@model List<CourseManagement_Model.ViewModel.SubmitAssignmentModel>
+
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Course Title</th>
+                        <th>Assignment Name</th>
+                        <th>Student Name</th>
+                        <th>Grade</th>
+                        <th>Feedback</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.CourseTitle</td>
+                            <td>@item.AssignmentTitle</td>
+                            <td>@item.StudentName</td>
+                            <td>@item.Grade</td>
+                            <td>@item.Feedback</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div>
+                <a href="Index" class="btn btn-primary btn-sm">Back To Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+

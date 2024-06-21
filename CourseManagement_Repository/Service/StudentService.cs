@@ -14,20 +14,45 @@ namespace CourseManagement_Repository.Service
     {
         private readonly CourseManagement557Entities _context = new CourseManagement557Entities();
 
+        public bool AddFund(int Amount, int UserId)
+        {
+            try
+            {
+                int save = 0;
+                Users user = _context.Users.Where(m => m.UserId == UserId).FirstOrDefault();
+                if(user != null)
+                {
+                    user.CreditPrice += Amount;
+                    user.Updated_at = DateTime.Now;
+                    save  =_context.SaveChanges();
+                }
+                return save > 0 ? true : false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public bool EnrollmentCourse(int CourseId, int UserId)
         {
             try
             {
                 int CheckEnrollCourse = 0;
-                Enrollment enrollment = new Enrollment
+                Users user = _context.Users.Where(m => m.UserId == UserId).FirstOrDefault();
+                if (user != null && user.UserId > 0 && user.CreditPrice > 0)
                 {
-                    CourseId = CourseId,
-                    UserId = UserId,
-                    Created_at = DateTime.Now
-                };
+                    Enrollment enrollment = new Enrollment
+                    {
+                        CourseId = CourseId,
+                        UserId = UserId,
+                        Created_at = DateTime.Now
+                    };
 
-                _context.Enrollment.Add(enrollment);
-                CheckEnrollCourse = _context.SaveChanges();
+                    _context.Enrollment.Add(enrollment);
+                    CheckEnrollCourse = _context.SaveChanges();
+                }
                 return CheckEnrollCourse > 0 ? true : false;
             }
             catch (Exception ex)
@@ -59,6 +84,17 @@ namespace CourseManagement_Repository.Service
         public List<UserModel> GetAllStudentList()
         {
             throw new NotImplementedException();
+        }
+
+        public decimal GetAmount(int UserId)
+        {
+            decimal amount = 0; 
+            Users user = _context.Users.Where(m => m.UserId == UserId).FirstOrDefault();
+            if(user != null)
+            {
+                amount = (decimal)user.CreditPrice;
+            }
+            return amount;
         }
 
         public List<AssignmentModel> GetAssignmentModelList(int CourseId, int UserId)
@@ -173,6 +209,28 @@ namespace CourseManagement_Repository.Service
             {
 
                 throw;
+            }
+        }
+
+        public bool UpdatePurchasePrice(int Amount, int UserId)
+        {
+            try
+            {
+                int updateAmount = 0;
+                Users user = _context.Users.Where(m => m.UserId == UserId).FirstOrDefault();
+                if(user != null)
+                {
+                    user.CreditPrice -= Amount;
+                    user.Updated_at = DateTime.Now;
+                    updateAmount = _context.SaveChanges();
+                }
+
+                return updateAmount > 0 ? true : false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }

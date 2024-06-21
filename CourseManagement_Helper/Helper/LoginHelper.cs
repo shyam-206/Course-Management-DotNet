@@ -20,6 +20,7 @@ namespace CourseManagement_Helper.Helper
                     Email = userModel.Email,
                     Password = userModel.Password,
                     Role = userModel.Role,
+                    CreditPrice = 0,
                     Created_at = DateTime.Now
                 };
                 return user != null ? user : null;

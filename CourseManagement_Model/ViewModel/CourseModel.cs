@@ -14,5 +14,7 @@ namespace CourseManagement_Model.ViewModel
         public int InstructorId { get; set; }
         public bool IsEnrollment { get; set; }
         public string InstructorName { get; set; }
+
+        public decimal Price { get; set; }
     }
 }

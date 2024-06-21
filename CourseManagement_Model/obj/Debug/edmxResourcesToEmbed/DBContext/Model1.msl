@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="CourseManagement557Model.Users">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="CreditPrice" ColumnName="CreditPrice" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Email" ColumnName="Email" />
@@ -17,6 +18,7 @@
     <EntitySetMapping Name="Course">
       <EntityTypeMapping TypeName="CourseManagement557Model.Course">
         <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
           <ScalarProperty Name="Created_at" ColumnName="Created_at" />
           <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />

@@ -16,6 +16,8 @@ namespace CourseManagement_Repository.Interface
         List<UserModel> GetAllStudentList();
         List<AssignmentModel> GetAssignmentModelList(int CourseId,int UserId);
         bool SubmitAssignment(int AssignmentId, int UserId);
-
+        decimal GetAmount(int UserId);
+        bool AddFund(int Amount, int UserId);
+        bool UpdatePurchasePrice(int Amount, int UserId);
     }
 }

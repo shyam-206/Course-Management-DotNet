@@ -16,6 +16,11 @@ namespace CourseManagement_Model.ViewModel
         public string AssignmentTitle { get; set; }
         public string AssignmentDescription { get; set; }
         public string StudentName { get; set; }
+        public string CourseTitle { get; set; }
+
+        public string InstructorName { get; set; }
+
+        public bool IsSubmit { get; set; }
 
     }
 }

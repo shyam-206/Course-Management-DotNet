@@ -111,6 +111,31 @@ namespace CourseManagement_Repository.Service
                 List<Submission> submissions = _context.Submission.Where(m => m.Assignment.Course.InstructorId == UserId).ToList();
                 List<SubmitAssignmentModel> list = new List<SubmitAssignmentModel>();
                 list = InstructorHelper.ConvertSubmissionListToSubmissionModelList(submissions);
+                if(list != null)
+                {
+                    foreach(var item in list)
+                    {
+                        Submission submission = _context.Submission.Where(m => m.SubmissionId == item.SubmissionId).FirstOrDefault();
+                        if(submission != null && submission.SubmissionId > 0)
+                        {
+                            item.IsSubmit = true;
+                            if (submission.Grade != null && submission.Feedback != null)
+                            {
+                                item.Grade = submission.Grade;
+                                item.Feedback = submission.Feedback;
+                            }
+                            else
+                            {
+                                item.Grade = 0;
+                                item.Feedback = null;
+                            }
+                        }
+                        else
+                        {
+                            item.IsSubmit = false;
+                        }
+                    }
+                }
                 return list != null ? list : null;
             }
             catch (Exception ex)

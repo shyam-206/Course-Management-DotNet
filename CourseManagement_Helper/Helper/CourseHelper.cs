@@ -19,7 +19,8 @@ namespace CourseManagement_Helper.Helper
                     Title = courseModel.Title,
                     Description = courseModel.Description,
                     InstructorId = courseModel.InstructorId,
-                    Created_at = DateTime.Now
+                    Price = courseModel.Price,
+                    Created_at = DateTime.Now                    
                 };
 
                 return course;
@@ -45,6 +46,7 @@ namespace CourseManagement_Helper.Helper
                         courseModel.Title = course.Title;
                         courseModel.Description = course.Description;
                         courseModel.InstructorId = (int)course.InstructorId;
+                        courseModel.Price = (decimal)course.Price;
                         courseModelList.Add(courseModel);
                     }
                 }

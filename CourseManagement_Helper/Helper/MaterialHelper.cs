@@ -25,6 +25,7 @@ namespace CourseManagement_Helper.Helper
                         materialModel.FilePath = item.FilePath;
                         materialModel.CourseId = (int)item.CourseId;
                         materialModel.Files = item.FilePath.Split(',');
+                        materialModel.CourseTitle = item.Course.Title;
                         materialModelList.Add(materialModel);
                     }
                 }

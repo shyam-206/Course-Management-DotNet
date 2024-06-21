@@ -23,6 +23,7 @@ namespace CourseManagement_Helper.Helper
                     courseModel.Description = course.Description;
                     courseModel.InstructorId = (int)course.InstructorId;
                     courseModel.InstructorName = course.Users.Username;
+                    courseModel.Price = (decimal)course.Price;
                     courseModelList.Add(courseModel);
                 }
             }
@@ -55,6 +56,36 @@ namespace CourseManagement_Helper.Helper
             throw ex;
         }
     }
+
+        public static List<SubmitAssignmentModel> ConvertSubmissionToSubmissionModelList(List<Submission> submissions)
+        {
+            try
+            {
+                List<SubmitAssignmentModel> submitAssignmentModelList = new List<SubmitAssignmentModel>();
+                if(submissions != null)
+                {
+                    foreach(var item in submissions)
+                    {
+                        SubmitAssignmentModel submitAssignmentModel = new SubmitAssignmentModel();
+                        submitAssignmentModel.SubmissionId = item.SubmissionId;
+                        submitAssignmentModel.AssignmentId = (int)item.AssignmentId;
+                        submitAssignmentModel.UserId = (int)item.UserId;
+                        submitAssignmentModel.Grade = item.Grade;
+                        submitAssignmentModel.Feedback = item.Feedback;
+                        submitAssignmentModel.StudentName = item.Users.Username;
+                        submitAssignmentModel.AssignmentTitle = item.Assignment.Title;
+                        submitAssignmentModel.AssignmentDescription = item.Assignment.Description;
+                        submitAssignmentModelList.Add(submitAssignmentModel);
+                    }
+                }
+                return submitAssignmentModelList;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 
 }

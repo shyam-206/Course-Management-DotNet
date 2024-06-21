@@ -383,6 +383,8 @@
     <Content Include="Views\Instructor\ReviewAssignment.cshtml" />
     <Content Include="Views\Admin\CourseList.cshtml" />
     <Content Include="Views\Admin\AssignmentList.cshtml" />
+    <Content Include="Views\Admin\SubmissionList.cshtml" />
+    <Content Include="Views\Admin\MaterialList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

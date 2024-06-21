@@ -14,6 +14,7 @@ namespace CourseManagement_Model.ViewModel
         public string Title { get; set; }
         public string FilePath { get; set; }
         public string[] Files { get; set; }
+        public string CourseTitle { get; set; }
 
     }
 }

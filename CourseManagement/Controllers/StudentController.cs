@@ -32,18 +32,19 @@ namespace CourseManagement.Controllers
         {
             int UserId = SessionHelper.UserId;
             List<CourseModel> list = studentRepository.GetAllCourseList(UserId);
+            ViewBag.Balance = studentRepository.GetAmount(UserId);
             return View(list);
         }
-
-        public ActionResult EnrollCourse(int CourseId)
+        
+        public ActionResult EnrollCourse(int CourseId,int Amount)
         {
             try
             {
                 int UserId = SessionHelper.UserId;
                 bool EnrollCourse = studentRepository.EnrollmentCourse(CourseId, UserId);
-                if (EnrollCourse)
+                bool UpdateAmount = studentRepository.UpdatePurchasePrice(Amount, UserId);
+                if (EnrollCourse && UpdateAmount)
                 {
-
                     return RedirectToAction("CourseList");
                 }
                 return RedirectToAction("ErrorPage");
@@ -119,6 +120,16 @@ namespace CourseManagement.Controllers
 
                 throw ex;
             }
+        }
+
+        public ActionResult AddFund(int Amount)
+        {
+            bool save = studentRepository.AddFund(Amount, SessionHelper.UserId);
+            if (save)
+            {
+                TempData["AddAmount"] = $"Your Amount {Amount} add successfully";
+            }
+            return RedirectToAction("CourseList");
         }
 
     }

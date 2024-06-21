@@ -1,7 +1,7 @@
 ﻿
 @model List<CourseManagement_Model.ViewModel.SubmitAssignmentModel>
 
-@if(@TempData["Submit Review"] != null)
+@if (@TempData["Submit Review"] != null)
 {
     <script>
         toastr.success('@TempData["Submit Review"]')
@@ -44,41 +44,50 @@
                         <td>@item.AssignmentDescription</td>
                         <td>@item.StudentName</td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm gradeButton" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Grade
-                            </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-xl modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Grade and Feedback</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body" id="Formbody">
-                                            <form method="post" action="SubmitReview">
-                                                <input value="@item.SubmissionId" type="text" name="SubmissionId"/>
-                                                @*<div class="gap-3">
-                                                        <p class="h5">Assignment Title : @item.AssignmentTitle</p>
-                                                        <p class="h5">Description : @item.AssignmentDescription</p>
-                                                        <p class="h5">Student Name : @item.StudentName</p>
-                                                    </div>*@
-                                                <div class="form-group">
-                                                    <label for="Grade" class="form-label fs-4">Grade</label>
-                                                    <input type="text" class="form-control" name="Grade" />
+                            @if (item.IsSubmit != true)
+                            {
+                                <span>Already Submit</span>
+                            }
+                            else
+                            {
+                                if (item.Grade == 0 && item.Feedback == null)
+                                {
+                                    <button type="button" class="btn btn-primary btn-sm gradeButton" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Grade
+                                    </button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-xl modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Grade and Feedback</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="Feedback" class="form-label fs-4">Feedback</label>
-                                                    <input type="text" class="form-control" name="Feedback" />
+                                                <div class="modal-body" id="Formbody">
+                                                    <form method="post" action="SubmitReview">
+                                                        <input value="@item.SubmissionId" type="text" name="SubmissionId" hidden />
+                                                        <div class="form-group">
+                                                            <label for="Grade" class="form-label fs-4">Grade</label>
+                                                            <input type="text" class="form-control" name="Grade" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Feedback" class="form-label fs-4">Feedback</label>
+                                                            <input type="text" class="form-control" name="Feedback" />
+                                                        </div>
+                                                        <div class="form-group mt-2">
+                                                            <button type="submit" class="btn btn-success">Submit Review</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
-                                                <div class="form-group mt-2">
-                                                    <button type="submit" class="btn btn-success">Submit Review</button>
-                                                </div>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                }
+                                else
+                                {
+                                    <span>Already Submit </span>
+                                }
+
+                            }
 
                         </td>
                     </tr>

@@ -18,7 +18,7 @@ namespace CourseManagement_Model.DBContext
         public Nullable<int> AssignmentId { get; set; }
         public Nullable<int> UserId { get; set; }
         public Nullable<decimal> Grade { get; set; }
-        public string Feedback { get; set; }    
+        public string Feedback { get; set; }
         public Nullable<System.DateTime> Submitted_at { get; set; }
         public Nullable<System.DateTime> Graded_at { get; set; }
     

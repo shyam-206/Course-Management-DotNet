@@ -4,6 +4,7 @@ using CourseManagement_Repository.Interface;
 using CourseManagement_Repository.Service;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -23,6 +24,8 @@ namespace CourseManagement.Controllers
             ViewBag.TotalAssignmentCount = assignmentList.Count();
             ViewBag.TotalCountOfInstrctor = adminRepository.GetTotalNumberOfInstructorCount();
             ViewBag.TotalCountOfStudent = adminRepository.GetTotalNumberOfStudentCount();
+            ViewBag.TotalSubmissionCount = adminRepository.GetSubmissionCount();
+            ViewBag.MaterialCount = adminRepository.GetMaterialCount();
             return View();
         }
 
@@ -36,6 +39,35 @@ namespace CourseManagement.Controllers
         {
             List<AssignmentModel> assignmentList = adminRepository.GetAssignmentList();
             return View(assignmentList);
+        }
+
+        public ActionResult SubmissionList()
+        {
+            List<SubmitAssignmentModel> submitAssignmentModelList = adminRepository.GetSubmissionModelList();
+            return View(submitAssignmentModelList);
+        }
+
+        public ActionResult MaterialList()
+        {
+            List<MaterialModel> list = adminRepository.GetAllMaterial();
+            return View(list);
+        }
+
+        public FileResult ViewMaterial(string file)
+        {
+            string path = Server.MapPath("~/Content/UploadFiles");
+            if (file.EndsWith(".pdf"))
+            {
+                string fullPath = Path.Combine(path, file);
+                return File(fullPath, "application/pdf");
+
+            }
+            else
+            {
+                string fullPath = Path.Combine(path, file);
+                return File(fullPath, "image/jpg");
+
+            }
         }
 
     }

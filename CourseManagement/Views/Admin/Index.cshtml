@@ -12,13 +12,13 @@
     }
 
     .card-custom:hover {
-        transform: translateY(-5px);
+        transform: translateY(-10px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
     .border-left-primary {
-        border-left-color: #6c757d;
-        background-color: #d1e7ff;
+        border-left-color: #9cbfdd;
+        
     }
 
     .border-left-success {
@@ -54,6 +54,7 @@
     .text-xs {
         font-size: 0.875rem;
         color: #6c757d;
+        text-decoration : none;
     }
 
     .font-weight-bold {
@@ -73,47 +74,44 @@
         text-decoration: underline;
     }
 </style>
-
 <div class="container mt-3">
     <div class="row">
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card card-custom border-left-primary shadow h-100 py-2">
+            <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                @Html.ActionLink("Total Course", "CourseList")
-                                @*Total Task*@
+                                <a href="CourseList" class="text-primary text-decoration-none">Total Course</a>
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"> @ViewBag.TotalCourseCount  </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="fa-solid fa-list-check fs-2 text-primary mt-3"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card card-custom border-left-primary shadow h-100 py-2">
+            <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                @Html.ActionLink("Total Assignment", "AssignmentList")
-                                @*Total Task*@
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ">
+                                <a href="AssignmentList" class="text-decoration-none text-primary">Total Assignment</a>
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"> @ViewBag.TotalAssignmentCount  </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="fa-solid fa-list-check mt-3 fs-2 text-primary"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card card-custom border-left-primary shadow h-100 py-2">
+            <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -123,14 +121,14 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800"> @ViewBag.TotalCountOfInstrctor  </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="fa-solid fa-chalkboard-user text-primary fs-2 mt-3"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card card-custom border-left-primary shadow h-100 py-2">
+            <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -140,12 +138,50 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800"> @ViewBag.TotalCountOfStudent  </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="fa-solid fa-users-line text-primary fs-1 mt-3"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                <a href="SubmissionList" class="text-primary fw-bold text-decoration-none">Submission Count</a>
 
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"> @ViewBag.TotalSubmissionCount </div>
+                        </div>
+                        <div class="col-auto">
+                            
+                            <i class="fa fa-paper-plane text-primary fs-2 mt-1" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                
+                                <a href="MaterialList" class="text-primary fw-bold text-decoration-none">Material Count</a>
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"> @ViewBag.MaterialCount </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-file text-primary fs-1 mt-1"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

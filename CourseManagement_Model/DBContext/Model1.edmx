@@ -23,10 +23,11 @@
           </Key>
           <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="varchar" MaxLength="50" />
-          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar(max)" />
           <Property Name="InstructorId" Type="int" />
           <Property Name="Created_at" Type="datetime" />
           <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Enrollment">
           <Key>
@@ -71,6 +72,7 @@
           <Property Name="Role" Type="varchar" MaxLength="100" />
           <Property Name="Created_at" Type="datetime" />
           <Property Name="Updated_at" Type="datetime" />
+          <Property Name="CreditPrice" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <Association Name="FK__Assignmen__Cours__4316F928">
           <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
@@ -210,6 +212,7 @@
           <NavigationProperty Name="Course" Relationship="CourseManagement557Model.FK__Course__Instruct__398D8EEE" FromRole="Users" ToRole="Course" />
           <NavigationProperty Name="Enrollment" Relationship="CourseManagement557Model.FK__Enrollmen__UserI__3C69FB99" FromRole="Users" ToRole="Enrollment" />
           <NavigationProperty Name="Submission" Relationship="CourseManagement557Model.FK__Submissio__UserI__4AB81AF0" FromRole="Users" ToRole="Submission" />
+          <Property Name="CreditPrice" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityContainer Name="CourseManagement557Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Self.Users" />
@@ -253,7 +256,7 @@
           </Key>
           <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="InstructorId" Type="Int32" />
           <Property Name="Created_at" Type="DateTime" Precision="3" />
           <Property Name="Updated_at" Type="DateTime" Precision="3" />
@@ -261,6 +264,7 @@
           <NavigationProperty Name="Enrollment" Relationship="CourseManagement557Model.FK__Enrollmen__Cours__3D5E1FD2" FromRole="Course" ToRole="Enrollment" />
           <NavigationProperty Name="Material" Relationship="CourseManagement557Model.FK__Material__Course__403A8C7D" FromRole="Course" ToRole="Material" />
           <NavigationProperty Name="Assignment" Relationship="CourseManagement557Model.FK__Assignmen__Cours__4316F928" FromRole="Course" ToRole="Assignment" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <Association Name="FK__Course__Instruct__398D8EEE">
           <End Type="CourseManagement557Model.Users" Role="Users" Multiplicity="0..1" />
@@ -406,6 +410,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CourseManagement557Model.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="CreditPrice" ColumnName="CreditPrice" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -419,6 +424,7 @@
           <EntitySetMapping Name="Course">
             <EntityTypeMapping TypeName="CourseManagement557Model.Course">
               <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
                 <ScalarProperty Name="Created_at" ColumnName="Created_at" />
                 <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />

@@ -18,10 +18,11 @@
     </Key>
     <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="varchar" MaxLength="50" />
-    <Property Name="Description" Type="varchar" MaxLength="100" />
+    <Property Name="Description" Type="varchar(max)" />
     <Property Name="InstructorId" Type="int" />
     <Property Name="Created_at" Type="datetime" />
     <Property Name="Updated_at" Type="datetime" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="Enrollment">
     <Key>
@@ -66,6 +67,7 @@
     <Property Name="Role" Type="varchar" MaxLength="100" />
     <Property Name="Created_at" Type="datetime" />
     <Property Name="Updated_at" Type="datetime" />
+    <Property Name="CreditPrice" Type="decimal" Precision="18" Scale="0" />
   </EntityType>
   <Association Name="FK__Assignmen__Cours__4316F928">
     <End Role="Course" Type="Self.Course" Multiplicity="0..1" />

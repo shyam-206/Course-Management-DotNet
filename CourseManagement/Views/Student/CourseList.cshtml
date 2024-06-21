@@ -3,10 +3,12 @@
     body {
         background-color: #f8f9fa;
     }
+
     .card {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
     }
+
     .table th, .table td {
         vertical-align: middle;
         text-align: center;
@@ -17,9 +19,49 @@
         border-color: #6c757d;
         cursor: not-allowed;
     }
+    .custom-border-shadow {
+        border: 2px solid black; /* Customize the border color and width */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Customize the shadow */
+    }
 </style>
-<div class="container mt-5">
-    <div class="card mt-3">
+@if (@TempData["AddAmount"] != null)
+{
+    <script>
+        toastr.success('@TempData["AddAmount"]');
+    </script>
+}
+<div class="container">
+
+    <div class="my-2 bg-primary-subtle p-2 d-flex align-items-center rounded-3 custom-border-shadow justify-content-end">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add Fund
+        </button>
+        <div class="mx-2 fw-bold fs-3 text-primary">Balance : @ViewBag.Balance</div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-3" id="exampleModalLabel">Add Your Fund in Your Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="AddFund" method="post">
+                        <div class="form-group">
+                            <label class="fs-3 mb-2">Add Amount</label>
+                            <input class="form-control col-6" name="Amount" />
+                        </div>
+                        <div class="form-button mt-3"><button type="submit" class="btn btn-success">Add Fund</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card mt-3 custom-border-shadow">
         <div class="card-body">
             <table class="table table-bordered table-hover">
                 <thead class="table-primary">
@@ -27,7 +69,7 @@
                         <td>Title</td>
                         <td>Description</td>
                         <td>Action</td>
-                        <td>Material</td>
+                        <td>Material  </td>
                         <td>Assignment List</td>
                     </tr>
                 </thead>
@@ -37,31 +79,49 @@
 
                         foreach (var item in Model)
                         {
-                            <tr>
+                            <tr class="my-3">
                                 <td>@item.Title</td>
                                 <td>@item.Description</td>
 
                                 @if (item.IsEnrollment != true)
                                 {
-                                    <td>
-                                        <a href="~/Student/EnrollCourse?CourseId=@item.CourseId" class="btn btn-outline-success btn-sm">Enroll course</a>
+                                    <td class="text-nowrap">
+
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#enrollModal">
+                                            Enroll course
+                                        </button>
+                                        <div class="modal fade" id="enrollModal" tabindex="-1" aria-labelledby="enrollModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Enrollment into Course</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="fs-3 mb-3">Price Amount : @item.Price</div>
+                                                        <a href="~/Student/EnrollCourse?CourseId=@item.CourseId&Amount=@item.Price" class="btn btn-outline-success btn-sm">Enroll course</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td>
-                                        <a class="btn btn-info btn-sm">Not Available</a>
+                                    <td class="text-nowrap">
+                                        <a class="btn btn-info btn-sm text-center ">Not Available</a>
                                     </td>
-                                    <td>
+                                    <td class="text-nowrap">
                                         <a class="btn btn-info btn-sm">Not Available</a>
                                     </td>
                                 }
                                 else
                                 {
-                                    <td>
+                                    <td class="text-nowrap">
                                         <a class="btn btn-outline-primary btn-sm" disabled>Already Enroll</a>
                                     </td>
-                                    <td>
+                                    <td class="text-nowrap">
                                         <a href="~/Student/ViewMaterial?CourseId=@item.CourseId" class="btn btn-warning btn-sm">View Material</a>
                                     </td>
-                                    <td>
+                                    <td class="text-nowrap">
                                         <a href="~/Student/AssignmentList?CourseId=@item.CourseId" class="btn btn-warning btn-sm">Assignments</a>
                                     </td>
                                 }
