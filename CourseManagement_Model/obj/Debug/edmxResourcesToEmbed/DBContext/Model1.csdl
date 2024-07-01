@@ -11,37 +11,21 @@
     <Property Name="Role" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Created_at" Type="DateTime" Precision="3" />
     <Property Name="Updated_at" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Course" Relationship="CourseManagement557Model.FK__Course__Instruct__398D8EEE" FromRole="Users" ToRole="Course" />
     <NavigationProperty Name="Enrollment" Relationship="CourseManagement557Model.FK__Enrollmen__UserI__3C69FB99" FromRole="Users" ToRole="Enrollment" />
     <NavigationProperty Name="Submission" Relationship="CourseManagement557Model.FK__Submissio__UserI__4AB81AF0" FromRole="Users" ToRole="Submission" />
     <Property Name="CreditPrice" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Review" Relationship="CourseManagement557Model.FK__Review__UserId__4E88ABD4" FromRole="Users" ToRole="Review" />
+    <NavigationProperty Name="Course" Relationship="CourseManagement557Model.FK__Course__Instruct__398D8EEE" FromRole="Users" ToRole="Course" />
   </EntityType>
   <EntityContainer Name="CourseManagement557Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Users" EntityType="Self.Users" />
-    <EntitySet Name="Course" EntityType="CourseManagement557Model.Course" />
-    <AssociationSet Name="FK__Course__Instruct__398D8EEE" Association="CourseManagement557Model.FK__Course__Instruct__398D8EEE">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Course" EntitySet="Course" />
-    </AssociationSet>
     <EntitySet Name="Enrollment" EntityType="CourseManagement557Model.Enrollment" />
-    <AssociationSet Name="FK__Enrollmen__Cours__3D5E1FD2" Association="CourseManagement557Model.FK__Enrollmen__Cours__3D5E1FD2">
-      <End Role="Course" EntitySet="Course" />
-      <End Role="Enrollment" EntitySet="Enrollment" />
-    </AssociationSet>
     <AssociationSet Name="FK__Enrollmen__UserI__3C69FB99" Association="CourseManagement557Model.FK__Enrollmen__UserI__3C69FB99">
       <End Role="Users" EntitySet="Users" />
       <End Role="Enrollment" EntitySet="Enrollment" />
     </AssociationSet>
     <EntitySet Name="Material" EntityType="CourseManagement557Model.Material" />
-    <AssociationSet Name="FK__Material__Course__403A8C7D" Association="CourseManagement557Model.FK__Material__Course__403A8C7D">
-      <End Role="Course" EntitySet="Course" />
-      <End Role="Material" EntitySet="Material" />
-    </AssociationSet>
     <EntitySet Name="Assignment" EntityType="CourseManagement557Model.Assignment" />
-    <AssociationSet Name="FK__Assignmen__Cours__4316F928" Association="CourseManagement557Model.FK__Assignmen__Cours__4316F928">
-      <End Role="Course" EntitySet="Course" />
-      <End Role="Assignment" EntitySet="Assignment" />
-    </AssociationSet>
     <EntitySet Name="Submission" EntityType="CourseManagement557Model.Submission" />
     <AssociationSet Name="FK__Submissio__Assig__49C3F6B7" Association="CourseManagement557Model.FK__Submissio__Assig__49C3F6B7">
       <End Role="Assignment" EntitySet="Assignment" />
@@ -51,37 +35,33 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="Submission" EntitySet="Submission" />
     </AssociationSet>
+    <EntitySet Name="Review" EntityType="CourseManagement557Model.Review" />
+    <AssociationSet Name="FK__Review__UserId__4E88ABD4" Association="CourseManagement557Model.FK__Review__UserId__4E88ABD4">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Review" EntitySet="Review" />
+    </AssociationSet>
+    <EntitySet Name="Course" EntityType="CourseManagement557Model.Course" />
+    <AssociationSet Name="FK__Assignmen__Cours__4316F928" Association="CourseManagement557Model.FK__Assignmen__Cours__4316F928">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Assignment" EntitySet="Assignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Course__Instruct__398D8EEE" Association="CourseManagement557Model.FK__Course__Instruct__398D8EEE">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Course" EntitySet="Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Enrollmen__Cours__3D5E1FD2" Association="CourseManagement557Model.FK__Enrollmen__Cours__3D5E1FD2">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Enrollment" EntitySet="Enrollment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Material__Course__403A8C7D" Association="CourseManagement557Model.FK__Material__Course__403A8C7D">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Material" EntitySet="Material" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Review__CourseId__4F7CD00D" Association="CourseManagement557Model.FK__Review__CourseId__4F7CD00D">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Review" EntitySet="Review" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Course">
-    <Key>
-      <PropertyRef Name="CourseId" />
-    </Key>
-    <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="InstructorId" Type="Int32" />
-    <Property Name="Created_at" Type="DateTime" Precision="3" />
-    <Property Name="Updated_at" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Users" Relationship="CourseManagement557Model.FK__Course__Instruct__398D8EEE" FromRole="Course" ToRole="Users" />
-    <NavigationProperty Name="Enrollment" Relationship="CourseManagement557Model.FK__Enrollmen__Cours__3D5E1FD2" FromRole="Course" ToRole="Enrollment" />
-    <NavigationProperty Name="Material" Relationship="CourseManagement557Model.FK__Material__Course__403A8C7D" FromRole="Course" ToRole="Material" />
-    <NavigationProperty Name="Assignment" Relationship="CourseManagement557Model.FK__Assignmen__Cours__4316F928" FromRole="Course" ToRole="Assignment" />
-    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="CourseImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="IsDelete" Type="Boolean" />
-  </EntityType>
-  <Association Name="FK__Course__Instruct__398D8EEE">
-    <End Type="CourseManagement557Model.Users" Role="Users" Multiplicity="0..1" />
-    <End Type="CourseManagement557Model.Course" Role="Course" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="UserId" />
-      </Principal>
-      <Dependent Role="Course">
-        <PropertyRef Name="InstructorId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="Enrollment">
     <Key>
       <PropertyRef Name="EnrollmentId" />
@@ -90,21 +70,9 @@
     <Property Name="UserId" Type="Int32" />
     <Property Name="CourseId" Type="Int32" />
     <Property Name="Created_at" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Course" Relationship="CourseManagement557Model.FK__Enrollmen__Cours__3D5E1FD2" FromRole="Enrollment" ToRole="Course" />
     <NavigationProperty Name="Users" Relationship="CourseManagement557Model.FK__Enrollmen__UserI__3C69FB99" FromRole="Enrollment" ToRole="Users" />
+    <NavigationProperty Name="Course" Relationship="CourseManagement557Model.FK__Enrollmen__Cours__3D5E1FD2" FromRole="Enrollment" ToRole="Course" />
   </EntityType>
-  <Association Name="FK__Enrollmen__Cours__3D5E1FD2">
-    <End Type="CourseManagement557Model.Course" Role="Course" Multiplicity="0..1" />
-    <End Type="CourseManagement557Model.Enrollment" Role="Enrollment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Course">
-        <PropertyRef Name="CourseId" />
-      </Principal>
-      <Dependent Role="Enrollment">
-        <PropertyRef Name="CourseId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Enrollmen__UserI__3C69FB99">
     <End Type="CourseManagement557Model.Users" Role="Users" Multiplicity="0..1" />
     <End Type="CourseManagement557Model.Enrollment" Role="Enrollment" Multiplicity="*" />
@@ -129,18 +97,6 @@
     <Property Name="Updated_at" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Course" Relationship="CourseManagement557Model.FK__Material__Course__403A8C7D" FromRole="Material" ToRole="Course" />
   </EntityType>
-  <Association Name="FK__Material__Course__403A8C7D">
-    <End Type="CourseManagement557Model.Course" Role="Course" Multiplicity="0..1" />
-    <End Type="CourseManagement557Model.Material" Role="Material" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Course">
-        <PropertyRef Name="CourseId" />
-      </Principal>
-      <Dependent Role="Material">
-        <PropertyRef Name="CourseId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="Assignment">
     <Key>
       <PropertyRef Name="AssignmentId" />
@@ -152,21 +108,9 @@
     <Property Name="DueDate" Type="DateTime" Precision="3" />
     <Property Name="Created_at" Type="DateTime" Precision="3" />
     <Property Name="Updated_at" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Course" Relationship="CourseManagement557Model.FK__Assignmen__Cours__4316F928" FromRole="Assignment" ToRole="Course" />
     <NavigationProperty Name="Submission" Relationship="CourseManagement557Model.FK__Submissio__Assig__49C3F6B7" FromRole="Assignment" ToRole="Submission" />
+    <NavigationProperty Name="Course" Relationship="CourseManagement557Model.FK__Assignmen__Cours__4316F928" FromRole="Assignment" ToRole="Course" />
   </EntityType>
-  <Association Name="FK__Assignmen__Cours__4316F928">
-    <End Type="CourseManagement557Model.Course" Role="Course" Multiplicity="0..1" />
-    <End Type="CourseManagement557Model.Assignment" Role="Assignment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Course">
-        <PropertyRef Name="CourseId" />
-      </Principal>
-      <Dependent Role="Assignment">
-        <PropertyRef Name="CourseId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="Submission">
     <Key>
       <PropertyRef Name="SubmissionId" />
@@ -202,6 +146,110 @@
       </Principal>
       <Dependent Role="Submission">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="ReviewId" />
+    </Key>
+    <Property Name="ReviewId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CourseId" Type="Int32" Nullable="false" />
+    <Property Name="Rating" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="ReviewText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ReviewDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Users" Relationship="CourseManagement557Model.FK__Review__UserId__4E88ABD4" FromRole="Review" ToRole="Users" />
+    <NavigationProperty Name="Course" Relationship="CourseManagement557Model.FK__Review__CourseId__4F7CD00D" FromRole="Review" ToRole="Course" />
+  </EntityType>
+  <Association Name="FK__Review__UserId__4E88ABD4">
+    <End Type="CourseManagement557Model.Users" Role="Users" Multiplicity="1" />
+    <End Type="CourseManagement557Model.Review" Role="Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InstructorId" Type="Int32" />
+    <Property Name="Created_at" Type="DateTime" Precision="3" />
+    <Property Name="Updated_at" Type="DateTime" Precision="3" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="CourseImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <NavigationProperty Name="Assignment" Relationship="CourseManagement557Model.FK__Assignmen__Cours__4316F928" FromRole="Course" ToRole="Assignment" />
+    <NavigationProperty Name="Users" Relationship="CourseManagement557Model.FK__Course__Instruct__398D8EEE" FromRole="Course" ToRole="Users" />
+    <NavigationProperty Name="Enrollment" Relationship="CourseManagement557Model.FK__Enrollmen__Cours__3D5E1FD2" FromRole="Course" ToRole="Enrollment" />
+    <NavigationProperty Name="Material" Relationship="CourseManagement557Model.FK__Material__Course__403A8C7D" FromRole="Course" ToRole="Material" />
+    <NavigationProperty Name="Review" Relationship="CourseManagement557Model.FK__Review__CourseId__4F7CD00D" FromRole="Course" ToRole="Review" />
+  </EntityType>
+  <Association Name="FK__Assignmen__Cours__4316F928">
+    <End Type="CourseManagement557Model.Course" Role="Course" Multiplicity="0..1" />
+    <End Type="CourseManagement557Model.Assignment" Role="Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="Assignment">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Course__Instruct__398D8EEE">
+    <End Type="CourseManagement557Model.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="CourseManagement557Model.Course" Role="Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="InstructorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Enrollmen__Cours__3D5E1FD2">
+    <End Type="CourseManagement557Model.Course" Role="Course" Multiplicity="0..1" />
+    <End Type="CourseManagement557Model.Enrollment" Role="Enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="Enrollment">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Material__Course__403A8C7D">
+    <End Type="CourseManagement557Model.Course" Role="Course" Multiplicity="0..1" />
+    <End Type="CourseManagement557Model.Material" Role="Material" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="Material">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Review__CourseId__4F7CD00D">
+    <End Type="CourseManagement557Model.Course" Role="Course" Multiplicity="1" />
+    <End Type="CourseManagement557Model.Review" Role="Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="CourseId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

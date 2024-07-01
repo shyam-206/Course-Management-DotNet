@@ -70,5 +70,16 @@ namespace CourseManagement.Controllers
             }
         }
 
+        public ActionResult InstructorList()
+        {
+            List<UserModel> list = adminRepository.InstructorList();
+            return View(list);
+        }
+
+        public ActionResult StudentList()
+        {
+            List<UserModel> list = adminRepository.StudentList();
+            return View(list);
+        }
     }
 }

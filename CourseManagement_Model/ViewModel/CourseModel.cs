@@ -17,6 +17,6 @@ namespace CourseManagement_Model.ViewModel
         public decimal Price { get; set; }
         public string Image { get; set; }
         public string IsDelete { get; set; }
-
+        public List<ReviewModel> Reviews { get; set; }
     }
 }

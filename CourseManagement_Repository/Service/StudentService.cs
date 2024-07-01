@@ -35,6 +35,22 @@ namespace CourseManagement_Repository.Service
             }
         }
 
+        public bool AddReview(ReviewModel reviewModel)
+        {
+            Review review = new Review()
+            {
+                UserId = reviewModel.UserId,
+                CourseId = reviewModel.CourseId,
+                Rating = reviewModel.Rating,
+                ReviewText = reviewModel.ReviewText,
+                ReviewDate = DateTime.Now
+            };
+
+            _context.Review.Add(review);
+            _context.SaveChanges();
+            return true;
+        }
+
         public bool EnrollmentCourse(int CourseId, int UserId)
         {
             try
@@ -132,6 +148,24 @@ namespace CourseManagement_Repository.Service
 
                 }
                 return assignmentModelList != null ? assignmentModelList : null;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public CourseModel GetCourseById(int CourseId,int UserId)
+        {
+            try
+            {
+                Course course = _context.Course.FirstOrDefault(m => m.CourseId == CourseId);
+                CourseModel courseModel = CourseHelper.ConvertCourseToCourseModel(course);
+                courseModel.IsEnrollment = _context.Enrollment.FirstOrDefault(m => m.CourseId == courseModel.CourseId && m.UserId == UserId) != null ? true : false;
+                List<Review> reviews = _context.Review.Where(m => m.CourseId == CourseId).ToList();
+                courseModel.Reviews = CourseHelper.ConvertReviewListToList(reviews);
+                return courseModel;
             }
             catch (Exception ex)
             {

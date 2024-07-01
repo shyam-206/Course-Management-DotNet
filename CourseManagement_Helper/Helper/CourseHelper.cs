@@ -33,6 +33,26 @@ namespace CourseManagement_Helper.Helper
             }
         }
 
+        public static CourseModel ConvertCourseToCourseModel(Course course)
+        {
+            try
+            {
+                CourseModel courseModel = new CourseModel();
+                courseModel.CourseId = course.CourseId;
+                courseModel.Title = course.Title;
+                courseModel.Description = course.Description;
+                courseModel.InstructorId = (int)course.InstructorId;
+                courseModel.InstructorName = course.Users.Username;
+                courseModel.Price = (decimal)course.Price;
+                courseModel.Image = course.CourseImage;
+                return courseModel;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         public static List<CourseModel> ConvertCourseModelListToCourseList(List<Course> courses)
         {
             try
@@ -53,6 +73,33 @@ namespace CourseManagement_Helper.Helper
                     }
                 }
                 return courseModelList;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public static List<ReviewModel> ConvertReviewListToList(List<Review> reviews)
+        {
+            try
+            {
+                List<ReviewModel> list = new List<ReviewModel>();
+                foreach(var review in reviews)
+                {
+                    ReviewModel reviewModel = new ReviewModel();
+                    reviewModel.ReviewId = review.ReviewId;
+                    reviewModel.UserId = review.UserId;
+                    reviewModel.CourseId = review.CourseId;
+                    reviewModel.Rating = review.Rating;
+                    reviewModel.ReviewText = review.ReviewText;
+                    reviewModel.ReviewDate = review.ReviewDate;
+                    reviewModel.StudentName = review.Users.Username;
+                    list.Add(reviewModel);
+                }
+
+                return list;
             }
             catch (Exception ex)
             {

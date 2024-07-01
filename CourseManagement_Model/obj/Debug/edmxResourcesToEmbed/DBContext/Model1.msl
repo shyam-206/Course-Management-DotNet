@@ -15,21 +15,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Course">
-      <EntityTypeMapping TypeName="CourseManagement557Model.Course">
-        <MappingFragment StoreEntitySet="Course">
-          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-          <ScalarProperty Name="CourseImage" ColumnName="CourseImage" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
-          <ScalarProperty Name="Created_at" ColumnName="Created_at" />
-          <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Enrollment">
       <EntityTypeMapping TypeName="CourseManagement557Model.Enrollment">
         <MappingFragment StoreEntitySet="Enrollment">
@@ -75,6 +60,33 @@
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="AssignmentId" ColumnName="AssignmentId" />
           <ScalarProperty Name="SubmissionId" ColumnName="SubmissionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Review">
+      <EntityTypeMapping TypeName="CourseManagement557Model.Review">
+        <MappingFragment StoreEntitySet="Review">
+          <ScalarProperty Name="ReviewDate" ColumnName="ReviewDate" />
+          <ScalarProperty Name="ReviewText" ColumnName="ReviewText" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Course">
+      <EntityTypeMapping TypeName="CourseManagement557Model.Course">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CourseImage" ColumnName="CourseImage" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+          <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+          <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -59,8 +59,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="card mt-3 custom-border-shadow">
         <div class="card-body">
             <table class="table table-bordered table-hover">
@@ -69,62 +67,19 @@
                         <td>Title</td>
                         <td>Description</td>
                         <td>Action</td>
-                        <td>Material</td>
-                        <td>Assignment List</td>
                     </tr>
                 </thead>
                 <tbody>
                     @if (Model != null)
                     {
-
                         foreach (var item in Model)
                         {
                             <tr class="my-3">
                                 <td>@item.Title</td>
                                 <td>@item.Description</td>
-
-                                @if (item.IsEnrollment != true)
-                                {
-                                    <td class="text-nowrap">
-
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#enrollModal">
-                                            Enroll course
-                                        </button>
-                                        <div class="modal fade" id="enrollModal" tabindex="-1" aria-labelledby="enrollModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Enrollment into Course</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="fs-3 mb-3">Price Amount : @item.Price</div>
-                                                        <a href="~/Student/EnrollCourse?CourseId=@item.CourseId&Amount=@item.Price" class="btn btn-outline-success btn-sm">Enroll course</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-nowrap">
-                                        <a class="btn btn-info btn-sm text-center">Not Available</a>
-                                    </td>
-                                    <td class="text-nowrap">
-                                        <a class="btn btn-info btn-sm">Not Available</a>
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td class="text-nowrap">
-                                        <a class="btn btn-outline-primary btn-sm" disabled>Already Enroll</a>
-                                    </td>
-                                    <td class="text-nowrap">
-                                        <a href="~/Student/ViewMaterial?CourseId=@item.CourseId" class="btn btn-warning btn-sm">View Material</a>
-                                    </td>
-                                    <td class="text-nowrap">
-                                        <a href="~/Student/AssignmentList?CourseId=@item.CourseId" class="btn btn-warning btn-sm">Assignments</a>
-                                    </td>
-                                }
+                                <td class="text-nowrap">
+                                    <a href="~/Student/ViewCourse?CourseId=@item.CourseId" class="btn btn-warning btn-sm">View Course</a>
+                                </td>
                             </tr>
                         }
 

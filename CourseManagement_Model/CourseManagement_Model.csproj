@@ -78,6 +78,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DBContext\Review.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBContext\Submission.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -90,6 +93,7 @@
     <Compile Include="ViewModel\EnrollmentModel.cs" />
     <Compile Include="ViewModel\LoginModel.cs" />
     <Compile Include="ViewModel\MaterialModel.cs" />
+    <Compile Include="ViewModel\ReviewModel.cs" />
     <Compile Include="ViewModel\SubmitAssignmentModel.cs" />
     <Compile Include="ViewModel\UserModel.cs" />
   </ItemGroup>

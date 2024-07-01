@@ -17,9 +17,10 @@ namespace CourseManagement_Model.DBContext
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Course()
         {
+            this.Assignment = new HashSet<Assignment>();
             this.Enrollment = new HashSet<Enrollment>();
             this.Material = new HashSet<Material>();
-            this.Assignment = new HashSet<Assignment>();
+            this.Review = new HashSet<Review>();
         }
     
         public int CourseId { get; set; }
@@ -32,12 +33,14 @@ namespace CourseManagement_Model.DBContext
         public string CourseImage { get; set; }
         public Nullable<bool> IsDelete { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Assignment> Assignment { get; set; }
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Enrollment> Enrollment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Material> Material { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Assignment> Assignment { get; set; }
+        public virtual ICollection<Review> Review { get; set; }
     }
 }

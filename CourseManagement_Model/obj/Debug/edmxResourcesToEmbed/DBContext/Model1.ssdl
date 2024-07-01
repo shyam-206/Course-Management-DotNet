@@ -46,6 +46,17 @@
     <Property Name="Created_at" Type="datetime" />
     <Property Name="Updated_at" Type="datetime" />
   </EntityType>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="ReviewId" />
+    </Key>
+    <Property Name="ReviewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="Rating" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ReviewText" Type="varchar(max)" Nullable="false" />
+    <Property Name="ReviewDate" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="Submission">
     <Key>
       <PropertyRef Name="SubmissionId" />
@@ -131,6 +142,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Review__CourseId__4F7CD00D">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Review" Type="Self.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Review__UserId__4E88ABD4">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Review" Type="Self.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Submissio__Assig__49C3F6B7">
     <End Role="Assignment" Type="Self.Assignment" Multiplicity="0..1" />
     <End Role="Submission" Type="Self.Submission" Multiplicity="*" />
@@ -160,6 +195,7 @@
     <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Enrollment" EntityType="Self.Enrollment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Submission" EntityType="Self.Submission" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Assignmen__Cours__4316F928" Association="Self.FK__Assignmen__Cours__4316F928">
@@ -181,6 +217,14 @@
     <AssociationSet Name="FK__Material__Course__403A8C7D" Association="Self.FK__Material__Course__403A8C7D">
       <End Role="Course" EntitySet="Course" />
       <End Role="Material" EntitySet="Material" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Review__CourseId__4F7CD00D" Association="Self.FK__Review__CourseId__4F7CD00D">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Review" EntitySet="Review" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Review__UserId__4E88ABD4" Association="Self.FK__Review__UserId__4E88ABD4">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Review" EntitySet="Review" />
     </AssociationSet>
     <AssociationSet Name="FK__Submissio__Assig__49C3F6B7" Association="Self.FK__Submissio__Assig__49C3F6B7">
       <End Role="Assignment" EntitySet="Assignment" />

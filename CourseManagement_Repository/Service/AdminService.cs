@@ -24,7 +24,7 @@ namespace CourseManagement_Repository.Service
 
         public List<CourseModel> GetALLCourseList()
         {
-            List<Course> courses = _context.Course.ToList();
+            List<Course> courses = _context.Course.Where(m => m.IsDelete != true).ToList();
             List<CourseModel> courseModelList = AdminHelper.ConvertCourseToCourseModel(courses);
             return courseModelList;
         }
@@ -91,6 +91,28 @@ namespace CourseManagement_Repository.Service
         {
             int MaterialCount = _context.Material.ToList().Count();
             return MaterialCount;
+        }
+
+        public List<UserModel> InstructorList()
+        {
+            try
+            {
+                List<Users> users = _context.Users.Where(m => m.Role == "Instructor").ToList();
+                List<UserModel> InstructorList = AdminHelper.ConvertUserListToList(users);
+                return InstructorList;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public List<UserModel> StudentList()
+        {
+            List<Users> users = _context.Users.Where(m => m.Role == "Student").ToList();
+            List<UserModel> StudentList = AdminHelper.ConvertUserListToList(users);
+            return StudentList;
         }
     }
 }

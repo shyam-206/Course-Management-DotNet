@@ -132,5 +132,18 @@ namespace CourseManagement.Controllers
             return RedirectToAction("CourseList");
         }
 
+        public ActionResult ViewCourse(int CourseId)
+        {
+            CourseModel courseModel = studentRepository.GetCourseById(CourseId, SessionHelper.UserId);
+            return View(courseModel);
+        }
+
+        [HttpPost]
+        public ActionResult SubmitReview(ReviewModel reviewModel)
+        {
+            reviewModel.UserId = SessionHelper.UserId;
+            bool review = studentRepository.AddReview(reviewModel);
+            return RedirectToAction("CourseList");
+        }
     }
 }

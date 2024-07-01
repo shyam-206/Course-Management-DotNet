@@ -19,5 +19,8 @@ namespace CourseManagement_Repository.Interface
         decimal GetAmount(int UserId);
         bool AddFund(int Amount, int UserId);
         bool UpdatePurchasePrice(int Amount, int UserId);
+        CourseModel GetCourseById(int CourseId,int UserId);
+
+        bool AddReview(ReviewModel reviewModel);
     }
 }

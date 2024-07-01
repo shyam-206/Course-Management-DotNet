@@ -18,6 +18,7 @@ namespace CourseManagement_Repository.Interface
         List<SubmitAssignmentModel> GetSubmissionModelList();
         List<MaterialModel> GetAllMaterial();
         List<EnrollmentModel> GetAllEnrollmentList();
-
+        List<UserModel> InstructorList();
+        List<UserModel> StudentList();
     }
 }

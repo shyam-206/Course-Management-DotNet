@@ -56,7 +56,6 @@ namespace CourseManagement_Helper.Helper
             throw ex;
         }
     }
-
         public static List<SubmitAssignmentModel> ConvertSubmissionToSubmissionModelList(List<Submission> submissions)
         {
             try
@@ -85,6 +84,24 @@ namespace CourseManagement_Helper.Helper
 
                 throw;
             }
+        }
+        public static List<UserModel> ConvertUserListToList(List<Users> users)
+        {
+            List<UserModel> userModelList = new List<UserModel>();
+            foreach(var user in users)
+            {
+                UserModel userModel = new UserModel
+                {
+                    UserId = user.UserId,
+                    Username = user.Username,
+                    Email = user.Email,
+                    Password = user.Password,
+                    Role = user.Role
+                };
+                userModelList.Add(userModel);
+            }
+
+            return userModelList;
         }
     }
 

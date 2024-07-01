@@ -26,10 +26,11 @@ namespace CourseManagement_Model.DBContext
         }
     
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<Course> Course { get; set; }
         public virtual DbSet<Enrollment> Enrollment { get; set; }
         public virtual DbSet<Material> Material { get; set; }
         public virtual DbSet<Assignment> Assignment { get; set; }
         public virtual DbSet<Submission> Submission { get; set; }
+        public virtual DbSet<Review> Review { get; set; }
+        public virtual DbSet<Course> Course { get; set; }
     }
 }

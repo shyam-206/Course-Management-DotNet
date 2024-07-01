@@ -1,0 +1,26 @@
+﻿@model List<CourseManagement_Model.ViewModel.UserModel>
+
+<div class="mt-3 container">
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>User Name</td>
+                <td>User Email</td>
+                <td>User Role</td>
+                <td>Password</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.Username</td>
+                    <td>@item.Email</td>
+                    <td>@item.Role</td>
+                    <td>@item.Password</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
