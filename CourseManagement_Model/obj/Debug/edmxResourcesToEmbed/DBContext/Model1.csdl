@@ -57,7 +57,7 @@
       <PropertyRef Name="CourseId" />
     </Key>
     <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="InstructorId" Type="Int32" />
     <Property Name="Created_at" Type="DateTime" Precision="3" />
@@ -67,6 +67,8 @@
     <NavigationProperty Name="Material" Relationship="CourseManagement557Model.FK__Material__Course__403A8C7D" FromRole="Course" ToRole="Material" />
     <NavigationProperty Name="Assignment" Relationship="CourseManagement557Model.FK__Assignmen__Cours__4316F928" FromRole="Course" ToRole="Assignment" />
     <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="CourseImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsDelete" Type="Boolean" />
   </EntityType>
   <Association Name="FK__Course__Instruct__398D8EEE">
     <End Type="CourseManagement557Model.Users" Role="Users" Multiplicity="0..1" />

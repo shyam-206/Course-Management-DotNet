@@ -27,7 +27,6 @@ namespace CourseManagement_Repository.Service
             List<Course> courses = _context.Course.ToList();
             List<CourseModel> courseModelList = AdminHelper.ConvertCourseToCourseModel(courses);
             return courseModelList;
-
         }
 
         public List<EnrollmentModel> GetAllEnrollmentList()

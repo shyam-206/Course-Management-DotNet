@@ -35,7 +35,7 @@ namespace CourseManagement_Repository.Service
         {
             try
             {
-                List<Course> CourseList = _context.Course.Where(m => m.InstructorId == InstructorId).ToList();
+                List<Course> CourseList = _context.Course.Where(m => m.InstructorId == InstructorId && m.IsDelete != true).ToList();
                 List<CourseModel> courseModelList = CourseHelper.ConvertCourseModelListToCourseList(CourseList);
                 return courseModelList;
             }

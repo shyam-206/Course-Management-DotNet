@@ -41,12 +41,22 @@ namespace CourseManagement.Controllers
         {
             if (ModelState.IsValid)
             {
+                if(Request.Files.Count > 0)
+                {
+                    string a = ConvertCourseFileToString(Request.Files[0]);
+                    courseModel.Image = a;
+                }
                 bool CheckSave = courseRepository.AddCourse(courseModel);
                 return RedirectToAction("Index");
             }
             return View(courseModel);
         }
-
+        public string ConvertCourseFileToString(HttpPostedFileBase file)
+        {
+            string uniqefilename = DateTime.Now.ToString("dd-MM-yyyy-ss") + "-" + file.FileName;
+            file.SaveAs(HttpContext.Server.MapPath("~/Content/CourseImages/") + uniqefilename);
+            return uniqefilename;
+        }
         public ActionResult UploadMaterial(int CourseId)
         {
             ViewBag.CourseId = CourseId;
@@ -75,10 +85,12 @@ namespace CourseManagement.Controllers
                 return View(materialModel);
             }
         }
+
+        [NonAction]
         public string ConvertFileToString(HttpPostedFileBase file)
         {
             /*string uniqefilename = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);*/
-            string uniqefilename = DateTime.Now.ToString("ddmmyyyyss") + "-" + file.FileName;
+            string uniqefilename = DateTime.Now.ToString("dd-MM-yyyy-ss") + "-" + file.FileName;
             file.SaveAs(HttpContext.Server.MapPath("~/Content/UploadFiles/") + uniqefilename);
             return uniqefilename;
         }
@@ -172,6 +184,10 @@ namespace CourseManagement.Controllers
         [HttpPost]
         public ActionResult EditCourse(CourseModel courseModel)
         {
+            if(Request.Files.Count > 0  && courseModel.Image != null)
+            {
+                courseModel.Image = ConvertCourseFileToString(Request.Files[0]);
+            }
             bool EditOrNot = instructorRepository.EditCourse(courseModel);
             if (EditOrNot)
             {
@@ -180,6 +196,16 @@ namespace CourseManagement.Controllers
             }
 
             return View("CreateCourse", courseModel);
+        }
+
+        public ActionResult DeleteCourse(int CourseId)
+        {
+            bool delete = instructorRepository.DeleteCourse(CourseId);
+            if (delete)
+            {
+                TempData["deleteCourse"] = "Course Delete Successfully";
+            }
+            return RedirectToAction("Index");
         }
     }
 }

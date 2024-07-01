@@ -18,6 +18,8 @@
     <EntitySetMapping Name="Course">
       <EntityTypeMapping TypeName="CourseManagement557Model.Course">
         <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CourseImage" ColumnName="CourseImage" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
           <ScalarProperty Name="Created_at" ColumnName="Created_at" />

@@ -66,7 +66,7 @@ namespace CourseManagement_Repository.Service
         {
             try
             {
-                List<Course> courses = _context.Course.ToList();
+                List<Course> courses = _context.Course.Where(m => m.IsDelete != true).ToList();
                 List<CourseModel> list = CourseHelper.ConvertCourseModelListToCourseList(courses);
                 foreach (var item in list)
                 {

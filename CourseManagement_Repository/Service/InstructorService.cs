@@ -39,6 +39,27 @@ namespace CourseManagement_Repository.Service
             }
         }
 
+        public bool DeleteCourse(int CourseId)
+        {
+            try
+            {
+                int deleteCourse = 0;
+                Course course = _context.Course.Where(m => m.CourseId == CourseId).FirstOrDefault();
+                if(course != null)
+                {
+                    course.IsDelete = true;
+                    deleteCourse = _context.SaveChanges();
+                }
+
+                return deleteCourse > 0 ? true : false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public bool EditCourse(CourseModel courseModel)
         {
             try
@@ -51,6 +72,8 @@ namespace CourseManagement_Repository.Service
                     course.Title = courseModel.Title;
                     course.Description = courseModel.Description;
                     course.InstructorId = courseModel.InstructorId;
+                    course.Price = courseModel.Price;
+                    course.CourseImage = courseModel.Image != null ? courseModel.Image : course.CourseImage;
                     course.Updated_at = DateTime.Now;
                     checkEditOrNot =_context.SaveChanges();
                 }
@@ -91,6 +114,8 @@ namespace CourseManagement_Repository.Service
                     courseModel.CourseId = course.CourseId;
                     courseModel.Title = course.Title;
                     courseModel.Description = course.Description;
+                    courseModel.Image = course.CourseImage;
+                    courseModel.Price = (decimal)course.Price;
                     courseModel.InstructorId = (int)course.InstructorId;
                 }
 

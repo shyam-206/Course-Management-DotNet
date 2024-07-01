@@ -17,5 +17,7 @@ namespace CourseManagement_Repository.Interface
 
         CourseModel GetCourseModelById(int CourseId);
         bool EditCourse(CourseModel courseModel);
+
+        bool DeleteCourse(int CourseId);
     }
 }

@@ -86,7 +86,6 @@ namespace CourseManagement.Controllers
                 {
                     bool check = loginRepository.AddUser(userModel);
                     return RedirectToAction("Login");
-
                 }
                 else
                 {

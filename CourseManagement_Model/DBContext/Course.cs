@@ -29,6 +29,8 @@ namespace CourseManagement_Model.DBContext
         public Nullable<System.DateTime> Created_at { get; set; }
         public Nullable<System.DateTime> Updated_at { get; set; }
         public Nullable<decimal> Price { get; set; }
+        public string CourseImage { get; set; }
+        public Nullable<bool> IsDelete { get; set; }
     
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

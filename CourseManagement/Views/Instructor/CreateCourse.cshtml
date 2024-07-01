@@ -1,50 +1,119 @@
 ﻿@model CourseManagement_Model.ViewModel.CourseModel
 
+<style>
+    .custom-file-input {
+        cursor: pointer;
+    }
 
+    .image-preview-container {
+        position: relative;
+        width: 600px;
+        height: 200px;
+        overflow: hidden;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+
+        .image-preview-container img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 100%;
+            max-height: 100%;
+        }
+</style>
 <div class="container mt-4">
     <div class="card">
         <div class="card-body">
             @if (Model != null)
             {
-                <form action="EditCourse" method="post">
+                <form action="EditCourse" method="post" enctype="multipart/form-data">
                     <input type="text" name="InstructorId" value="@Session["UserId"]" hidden />
                     <input type="text" name="CourseId" value="@Model.CourseId" hidden />
+                    <input type="hidden" id="CurrentImageFile" value="@Model.Image" />
                     <div class="form-group mt-3">
-                        <label for="Title">Title</label>
+                        <label for="Title" class="fs-2 mt-1">Title</label>
                         <input type="text" class="form-control" name="Title" placeholder="Enter Your Title" value="@Model.Title" />
                     </div>
                     <div class="form-group mt-3">
-                        <label for="Description">Description</label>
+                        <label for="Description" class="fs-2 mt-1">Description</label>
                         <input type="text" class="form-control" name="Description" placeholder="Enter Your Description" value="@Model.Description" />
                     </div>
+                    <div class="form-group">
+                        <label for="Price" class="fs-2 mt-1">Price</label>
+                        <input type="text" class="form-control" name="Price" placeholder="Enter Your Price" value="@Model.Price" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Image" class="fs-2 mt-1">Course Image</label>
+                        <div class="custom-file mt-3">
+                            <input type="file" class="custom-file-input" id="Image" name="Image" onchange="showImagePreview(event)">
+                        </div>
+                        <div class="image-preview-container bg-primary-subtle">
+                            <img id="imagePreview" src="~/Content/CourseImages/@Model.Image" alt="Image Preview">
+                        </div>
+                    </div>
+                    
                     <div class="mt-3">
-                        <button class="btn btn-primary">Edit</button>
+                        <button class="btn btn-primary">Edit Course</button>
                     </div>
                 </form>
             }
             else
             {
-                <form action="CreateCourse" method="post">
+                <form action="CreateCourse" method="post" enctype="multipart/form-data">
                     <input type="text" name="InstructorId" value="@Session["UserId"]" hidden />
-                    <div class="form-group mt-3">
-                        <label for="Title">Title</label>
+                    <div class="form-group">
+                        <label for="Title" class="fs-2 mt-1">Title</label>
                         <input type="text" class="form-control" name="Title" placeholder="Enter Your Title" />
                     </div>
-                    <div class="form-group mt-3">
-                        <label for="Description">Description</label>
+                    <div class="form-group">
+                        <label for="Description" class="fs-2 mt-1">Description</label>
                         <input type="text" class="form-control" name="Description" placeholder="Enter Your Description" />
                     </div>
-                    <div class="form-group mt-3">
-                        <label for="Price">Price</label>
+                    <div class="form-group">
+                        <label for="Price" class="fs-2 mt-1">Price</label>
                         <input type="text" class="form-control" name="Price" placeholder="Enter Your Price" />
                     </div>
-                    <div class="mt-3">
-                        <button class="btn btn-primary">Create</button>
+                    <div class="form-group">
+                        <label for="Image" class="fs-2 mt-1">Course Image</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="Image" name="Image" onchange="showImagePreview(event)">
+
+                        </div>
+                        <div class="image-preview-container bg-primary-subtle">
+                            <img id="imagePreview" src="" alt="Image Preview" style="display: none;">
+                        </div>
                     </div>
+                    <button type="submit" class="btn btn-primary mt-3">Create Course</button>
                 </form>
             }
 
         </div>
     </div>
 </div>
+<script>
+    // Show selected file name
+    document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+        var fileName = document.getElementById("Image").files[0].name;
+        var nextSibling = e.target.nextElementSibling;
+        nextSibling.innerText = fileName;
+    });
+
+    // Show image preview
+    function showImagePreview(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('imagePreview');
+            output.src = reader.result;
+            output.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
+
+
+
+</script>
 
