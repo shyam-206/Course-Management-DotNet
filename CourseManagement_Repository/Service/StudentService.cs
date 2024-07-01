@@ -20,7 +20,7 @@ namespace CourseManagement_Repository.Service
             {
                 int save = 0;
                 Users user = _context.Users.Where(m => m.UserId == UserId).FirstOrDefault();
-                if(user != null)
+                if(user != null && user.CreditPrice + Amount <= 20000)
                 {
                     user.CreditPrice += Amount;
                     user.Updated_at = DateTime.Now;
@@ -164,6 +164,7 @@ namespace CourseManagement_Repository.Service
                 CourseModel courseModel = CourseHelper.ConvertCourseToCourseModel(course);
                 courseModel.IsEnrollment = _context.Enrollment.FirstOrDefault(m => m.CourseId == courseModel.CourseId && m.UserId == UserId) != null ? true : false;
                 List<Review> reviews = _context.Review.Where(m => m.CourseId == CourseId).ToList();
+                courseModel.AvgRating = CalcAvarageRating(reviews);
                 courseModel.Reviews = CourseHelper.ConvertReviewListToList(reviews);
                 return courseModel;
             }
@@ -172,6 +173,18 @@ namespace CourseManagement_Repository.Service
 
                 throw ex;
             }
+        }
+
+        public decimal CalcAvarageRating(List<Review> reviews)
+        {
+            decimal avg = 0;
+            decimal count = reviews.Count();
+            foreach(var item in reviews)
+            {
+                avg += item.Rating;
+            }
+
+            return (avg / count);
         }
 
         public MaterialModel GetMaterial(int CourseId,int MaterialId)

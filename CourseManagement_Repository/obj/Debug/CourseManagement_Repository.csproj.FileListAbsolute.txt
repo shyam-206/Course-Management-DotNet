@@ -49,3 +49,20 @@ C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Repository\obj\De
 C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.csproj.CopyComplete
 C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.dll
 C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.pdb
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\bin\Debug\CourseManagement_Repository.dll.config
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\bin\Debug\CourseManagement_Repository.dll
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\bin\Debug\CourseManagement_Repository.pdb
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\bin\Debug\CourseManagement_Helper.dll
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\bin\Debug\CourseManagement_Model.dll
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\bin\Debug\EntityFramework.dll
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\bin\Debug\CourseManagement_Helper.pdb
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\bin\Debug\CourseManagement_Model.pdb
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\bin\Debug\CourseManagement_Model.dll.config
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\bin\Debug\EntityFramework.xml
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.csproj.CopyComplete
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.dll
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.pdb

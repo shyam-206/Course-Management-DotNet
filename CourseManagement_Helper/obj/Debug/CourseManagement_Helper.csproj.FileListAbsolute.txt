@@ -34,3 +34,15 @@ C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\obj\Debug\
 C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.csproj.CopyComplete
 C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.dll
 C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.pdb
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Helper\bin\Debug\CourseManagement_Helper.dll
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Helper\bin\Debug\CourseManagement_Helper.pdb
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Helper\bin\Debug\CourseManagement_Model.dll
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Helper\bin\Debug\EntityFramework.dll
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Helper\bin\Debug\CourseManagement_Model.pdb
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Helper\bin\Debug\CourseManagement_Model.dll.config
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Helper\bin\Debug\EntityFramework.xml
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.csproj.CopyComplete
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.dll
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Helper\obj\Debug\CourseManagement_Helper.pdb

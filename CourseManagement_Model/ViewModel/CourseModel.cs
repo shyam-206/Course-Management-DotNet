@@ -18,5 +18,7 @@ namespace CourseManagement_Model.ViewModel
         public string Image { get; set; }
         public string IsDelete { get; set; }
         public List<ReviewModel> Reviews { get; set; }
+
+        public decimal AvgRating { get; set; }
     }
 }

@@ -34,3 +34,15 @@ C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Model\obj\Debug\C
 C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Model\obj\Debug\CourseManagement_Model.csproj.CopyComplete
 C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Model\obj\Debug\CourseManagement_Model.dll
 C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Model\obj\Debug\CourseManagement_Model.pdb
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Model\bin\Debug\CourseManagement_Model.dll.config
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Model\bin\Debug\CourseManagement_Model.dll
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Model\bin\Debug\CourseManagement_Model.pdb
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Model\bin\Debug\EntityFramework.dll
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Model\bin\Debug\EntityFramework.xml
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Model\obj\Debug\CourseManagement_Model.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Model\obj\Debug\CourseManagement_Model.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Model\obj\Debug\CourseManagement_Model.csproj.CopyComplete
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Model\obj\Debug\CourseManagement_Model.dll
+C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Model\obj\Debug\CourseManagement_Model.pdb
