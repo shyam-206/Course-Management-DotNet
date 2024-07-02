@@ -15,6 +15,7 @@
         border-radius: 15px;
         overflow: hidden;
     }
+
     .card-body {
         padding: 25px;
     }
@@ -42,12 +43,11 @@
         background-color: #0056b3;
     }
 
-    .btn-outline-primary, .btn-warning {
+    .btn-outline-primary, .btn-warning, .btn-success,.btn-danger {
         border-radius: 30px;
         padding: 10px 20px;
         margin-top: 10px;
     }
-
 
     .review-section {
         margin-top: 40px;
@@ -94,19 +94,18 @@
         margin-bottom: 15px;
         border-radius: 5px;
     }
+
     .review-text {
         line-height: 1.6;
         margin-top: 10px;
-        text-align : justify;
+        text-align: justify;
     }
-
-
 </style>
 
 <div class="container-fluid  mt-4">
     <div class="card">
-        <div class="m-2 p-2" style="z-index : 1;">    
-            <a class="rounded-4 border-5 bg-primary-subtle px-2 py-1" href="CourseList"><i class="fa-solid fa-arrow-left"></i></a>
+        <div class="m-2 p-2" style="z-index : 1;">
+            <a class="rounded-4 border-5 bg-primary-subtle px-2 py-1" href="Index"><i class="fa-solid fa-arrow-left"></i></a>
         </div>
         <img src="~/Content/CourseImages/@Model.Image" alt="Image Preview" class="img-fluid">
         <div class="card-body">
@@ -116,57 +115,14 @@
                 <p class="fs-5"><strong class="text-dark">Price : </strong> <span class="text-primary fw-bolder">@Model.Price ₹</span></p>
                 <p class="fs-5"><strong>Avg. Rating : </strong> @(Model.AvgRating ) / 5</p>
             </div>
-            @if (Model.IsEnrollment != true)
-            {
-                <button type="button" class="btn btn-custom btn-sm mt-3" data-bs-toggle="modal" data-bs-target="#enrollModal">
-                    Enroll in Course
-                </button>
-                <div class="modal fade" id="enrollModal" tabindex="-1" aria-labelledby="enrollModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="enrollModalLabel">Enrollment into Course</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="fs-3 mb-3">Price Amount: $@Model.Price</div>
-                                <a href="~/Student/EnrollCourse?CourseId=@Model.CourseId&Amount=@Model.Price" class="btn btn-outline-success btn-sm">Enroll in Course</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <a class="btn btn-outline-primary btn-sm mt-3" disabled>Already Enrolled</a>
-                <a href="~/Student/ViewMaterial?CourseId=@Model.CourseId" class="btn btn-warning btn-sm mt-3">View Material</a>
-                <a href="~/Student/AssignmentList?CourseId=@Model.CourseId" class="btn btn-warning btn-sm mt-3">Assignments</a>
-            }
 
+            <div>
+                <a href="~/Instructor/EditCourse?CourseId=@Model.CourseId" class="btn btn-success btn-sm mt-3">Edit Course</a>
+                <a  href="~/Instructor/DeleteCourse?CourseId=@Model.CourseId" class="btn btn-danger btn-sm mt-3">Delete Course</a>
+                <a href="~/Instructor/UploadMaterial?CourseId=@Model.CourseId" class="btn btn-warning btn-sm mt-3">Upload Material</a>
+                <a href="~/Instructor/AssignmentList?CourseId=@Model.CourseId" class="btn btn-warning btn-sm mt-3">Assignments</a>
+            </div>
             <div class="review-section">
-                @if (Model.IsEnrollment)
-                {
-                    <div class="review-form mt-4">
-                        <h4>Leave a Review</h4>
-                        <form method="post" action="SubmitReview">
-                            <input name="CourseId" value="@Model.CourseId" hidden />
-                            <input type="text" name="Rating" id="Rating" value="0" hidden>
-                            <div class="mb-3">
-                                <div class="star-rating">
-                                    @for (int i = 1; i <= 5; i++)
-                                    {
-                                        <label for="star@i" class="fa fa-star" onclick="updateRating(@i)"></label>
-                                    }
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <textarea class="form-control" name="ReviewText" rows="4" placeholder="Write your review here..."></textarea>
-                            </div>
-                            <input type="hidden" name="CourseId" value="@Model.CourseId" />
-                            <button type="submit" class="btn btn-custom btn-sm">Submit Review</button>
-                        </form>
-                    </div>
-                }
                 <h3 class="mt-3">Reviews</h3>
                 <div class="reviews">
                     @foreach (var review in Model.Reviews)

@@ -122,8 +122,6 @@ namespace CourseManagement_Repository.Service
                 List<AssignmentModel>  assignmentModelList = InstructorHelper.ConvertAssignmentListToAssignmentModelList(list);
                 foreach(var item in assignmentModelList)
                 {
-                    /*item.Is_submit = _context.Submission.FirstOrDefault(m => m.AssignmentId == item.AssignmentId && m.UserId == UserId) != null ? true : false;
-                    item.Grade = (decimal)_context.Submission.FirstOrDefault(m => m.AssignmentId == item.AssignmentId && m.UserId == UserId).Grade;*/
                     Submission submission = _context.Submission.Where(m => m.AssignmentId == item.AssignmentId && m.UserId == UserId).FirstOrDefault();
                     if(submission != null)
                     {
@@ -178,13 +176,18 @@ namespace CourseManagement_Repository.Service
         public decimal CalcAvarageRating(List<Review> reviews)
         {
             decimal avg = 0;
-            decimal count = reviews.Count();
-            foreach(var item in reviews)
+            if(reviews != null && reviews.Count() > 0)
             {
-                avg += item.Rating;
+                decimal count = reviews.Count();
+                foreach (var item in reviews)
+                {
+                    avg += item.Rating;
+                }
+
+                return (avg / count);
             }
 
-            return (avg / count);
+            return avg;
         }
 
         public MaterialModel GetMaterial(int CourseId,int MaterialId)

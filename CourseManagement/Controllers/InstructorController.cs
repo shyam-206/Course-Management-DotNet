@@ -207,5 +207,12 @@ namespace CourseManagement.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public ActionResult ViewCourse(int CourseId) 
+        {
+            CourseModel courseModel = instructorRepository.ViewCourse(CourseId);
+            return View(courseModel);
+        }
+
     }
 }

@@ -128,7 +128,6 @@ namespace CourseManagement_Repository.Service
                 throw ex;
             }
         }
-
         public List<SubmitAssignmentModel> GetSubmitAssignmentList(int UserId)
         {
             try
@@ -215,6 +214,32 @@ namespace CourseManagement_Repository.Service
             }
         }
 
+        public CourseModel ViewCourse(int CourseId)
+        {
+            Course course = _context.Course.FirstOrDefault(m => m.CourseId == CourseId);
+            CourseModel courseModel = CourseHelper.ConvertCourseToCourseModel(course);
+            /*courseModel.IsEnrollment = _context.Enrollment.FirstOrDefault(m => m.CourseId == courseModel.CourseId && m.UserId == UserId) != null ? true : false;*/
+            List<Review> reviews = _context.Review.Where(m => m.CourseId == CourseId).ToList();
+            courseModel.AvgRating = CalcAvarageRating(reviews);
+            courseModel.Reviews = CourseHelper.ConvertReviewListToList(reviews);
+            return courseModel;
+        }
+        public decimal CalcAvarageRating(List<Review> reviews)
+        {
+            decimal avg = 0;
+            if (reviews != null && reviews.Count() > 0)
+            {
+                decimal count = reviews.Count();
+                foreach (var item in reviews)
+                {
+                    avg += item.Rating;
+                }
+
+                return (avg / count);
+            }
+
+            return avg;
+        }
 
     }
 }
