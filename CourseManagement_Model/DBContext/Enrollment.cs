@@ -19,7 +19,7 @@ namespace CourseManagement_Model.DBContext
         public Nullable<int> CourseId { get; set; }
         public Nullable<System.DateTime> Created_at { get; set; }
     
-        public virtual Users Users { get; set; }
         public virtual Course Course { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

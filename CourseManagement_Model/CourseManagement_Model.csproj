@@ -52,16 +52,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext\Assignment.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\Course.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\Enrollment.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\Material.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -78,14 +78,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DBContext\Model2.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model2.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\Model2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\Model2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model2.edmx</DependentUpon>
+    </Compile>
     <Compile Include="DBContext\Review.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\Submission.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\Users.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AssignmentModel.cs" />
@@ -109,6 +124,13 @@
     <None Include="DBContext\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="DBContext\Model2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DBContext\Model2.edmx.diagram">
+      <DependentUpon>Model2.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +143,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="DBContext\Model2.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model2.edmx</DependentUpon>
+      <LastGenOutput>Model2.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DBContext\Model2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model2.edmx</DependentUpon>
+      <LastGenOutput>Model2.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

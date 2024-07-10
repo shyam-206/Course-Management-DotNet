@@ -12,7 +12,7 @@ namespace CourseManagement_Repository.Service
 {
     public class InstructorService : InstructorRepository
     {
-        private readonly CourseManagement557Entities _context = new CourseManagement557Entities();
+        private readonly CourseManagement557Entities1 _context = new CourseManagement557Entities1();
 
         public bool CreateAssignment(AssignmentModel assignmentModel)
         {

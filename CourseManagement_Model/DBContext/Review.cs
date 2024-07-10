@@ -21,7 +21,7 @@ namespace CourseManagement_Model.DBContext
         public string ReviewText { get; set; }
         public System.DateTime ReviewDate { get; set; }
     
-        public virtual Users Users { get; set; }
         public virtual Course Course { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

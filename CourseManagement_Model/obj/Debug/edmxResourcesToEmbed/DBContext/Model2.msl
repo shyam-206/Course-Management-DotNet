@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CourseManagement557Model1StoreContainer" CdmEntityContainer="CourseManagement557Entities1">
+    <EntitySetMapping Name="Assignment">
+      <EntityTypeMapping TypeName="CourseManagement557Model1.Assignment">
+        <MappingFragment StoreEntitySet="Assignment">
+          <ScalarProperty Name="AssignmentId" ColumnName="AssignmentId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+          <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Course">
+      <EntityTypeMapping TypeName="CourseManagement557Model1.Course">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />
+          <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+          <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="CourseImage" ColumnName="CourseImage" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Enrollment">
+      <EntityTypeMapping TypeName="CourseManagement557Model1.Enrollment">
+        <MappingFragment StoreEntitySet="Enrollment">
+          <ScalarProperty Name="EnrollmentId" ColumnName="EnrollmentId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Material">
+      <EntityTypeMapping TypeName="CourseManagement557Model1.Material">
+        <MappingFragment StoreEntitySet="Material">
+          <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+          <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Review">
+      <EntityTypeMapping TypeName="CourseManagement557Model1.Review">
+        <MappingFragment StoreEntitySet="Review">
+          <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="ReviewText" ColumnName="ReviewText" />
+          <ScalarProperty Name="ReviewDate" ColumnName="ReviewDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Submission">
+      <EntityTypeMapping TypeName="CourseManagement557Model1.Submission">
+        <MappingFragment StoreEntitySet="Submission">
+          <ScalarProperty Name="SubmissionId" ColumnName="SubmissionId" />
+          <ScalarProperty Name="AssignmentId" ColumnName="AssignmentId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+          <ScalarProperty Name="Submitted_at" ColumnName="Submitted_at" />
+          <ScalarProperty Name="Graded_at" ColumnName="Graded_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="CourseManagement557Model1.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+          <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+          <ScalarProperty Name="CreditPrice" ColumnName="CreditPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
