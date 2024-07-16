@@ -18,15 +18,10 @@ namespace CourseManagement.Controllers
         private readonly IAdminRepository adminRepository = new AdminService();
         public ActionResult Index()
         {
-            List<CourseModel> list = adminRepository.GetALLCourseList();
-            List<AssignmentModel> assignmentList = adminRepository.GetAssignmentList();
-            ViewBag.TotalCourseCount = list.Count();
-            ViewBag.TotalAssignmentCount = assignmentList.Count();
-            ViewBag.TotalCountOfInstrctor = adminRepository.GetTotalNumberOfInstructorCount();
-            ViewBag.TotalCountOfStudent = adminRepository.GetTotalNumberOfStudentCount();
-            ViewBag.TotalSubmissionCount = adminRepository.GetSubmissionCount();
-            ViewBag.MaterialCount = adminRepository.GetMaterialCount();
-            return View();
+         
+            DashboardModel dashboardModel = adminRepository.GetDashboardService();
+
+            return View(dashboardModel);
         }
 
         public ActionResult CourseList()

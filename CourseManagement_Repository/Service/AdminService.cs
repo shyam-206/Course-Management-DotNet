@@ -61,7 +61,7 @@ namespace CourseManagement_Repository.Service
         {
             List<Submission> submissions = _context.Submission.ToList();
             List<SubmitAssignmentModel> submitAssignmentModelList = AdminHelper.ConvertSubmissionToSubmissionModelList(submissions);
-            foreach(var item in submitAssignmentModelList)
+            foreach (var item in submitAssignmentModelList)
             {
                 Assignment assignment = _context.Assignment.Where(m => m.AssignmentId == item.AssignmentId).FirstOrDefault();
                 item.InstructorName = assignment.Course.Users.Username;
@@ -113,6 +113,52 @@ namespace CourseManagement_Repository.Service
             List<Users> users = _context.Users.Where(m => m.Role == "Student").ToList();
             List<UserModel> StudentList = AdminHelper.ConvertUserListToList(users);
             return StudentList;
+        }
+        public decimal CalcAvarageRating(List<Review> reviews)
+        {
+            decimal avg = 0;
+            if (reviews != null && reviews.Count() > 0)
+            {
+                decimal count = reviews.Count();
+                foreach (var item in reviews)
+                {
+                    avg += item.Rating;
+                }
+
+                return (avg / count);
+            }
+
+            return avg;
+        }
+        public DashboardModel GetDashboardService()
+        {
+            DashboardModel dashboardModel = new DashboardModel();
+            List<Course> courses = _context.Course.Where(m => m.IsDelete != true).ToList();
+            List<string> CourseNameList = new List<string>();
+            List<int> EnrollCourseCount = new List<int>();
+            List<decimal> Rating = new List<decimal>();
+            foreach (var item in courses)
+            {
+                string CourseName = item.Title;
+                int EnrollCount = _context.Enrollment.Where(m => m.CourseId == item.CourseId).Count();
+                decimal AvgRating = CalcAvarageRating(_context.Review.Where(m => m.CourseId == item.CourseId).ToList());
+                CourseNameList.Add(CourseName);
+                EnrollCourseCount.Add(EnrollCount);
+                Rating.Add(AvgRating);
+            }
+
+            dashboardModel.CourseNameList = CourseNameList;
+            dashboardModel.EnrollCourseCount = EnrollCourseCount;
+            dashboardModel.Rating = Rating;
+            dashboardModel.TotalCourseCount = courses.Count();
+            dashboardModel.TotalAssignmentCount = GetAssignmentList().Count();
+            dashboardModel.TotalCountOfInstructor = GetTotalNumberOfInstructorCount();
+            dashboardModel.TotalCountOfStudent = GetTotalNumberOfStudentCount();
+            dashboardModel.TotalSubmissionCount = GetSubmissionCount();
+            dashboardModel.MaterialCount = GetMaterialCount();
+
+
+            return dashboardModel;
         }
     }
 }

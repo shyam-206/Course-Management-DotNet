@@ -20,5 +20,6 @@ namespace CourseManagement_Repository.Interface
         List<EnrollmentModel> GetAllEnrollmentList();
         List<UserModel> InstructorList();
         List<UserModel> StudentList();
+        DashboardModel GetDashboardService();
     }
 }
