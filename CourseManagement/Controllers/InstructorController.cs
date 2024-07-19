@@ -214,5 +214,26 @@ namespace CourseManagement.Controllers
             return View(courseModel);
         }
 
+        public ActionResult Discussion(int CourseId)
+        {
+            ViewBag.CourseId = CourseId;
+            List<DiscussionModel> list = instructorRepository.DiscussionModelList(CourseId);
+            return View(list);
+        }
+
+        [HttpPost]
+        public ActionResult CreatePost(DiscussionModel discussionModel)
+        {
+            discussionModel.UserId = SessionHelper.UserId;
+            bool ans = instructorRepository.CreatePost(discussionModel);
+            return RedirectToAction("Discussion", new { CourseId = discussionModel.CourseId });
+        }
+
+        [HttpGet]
+        public ActionResult GetComments(int DiscussionId)
+        {
+            List<CommentModel> list = instructorRepository.CommentList(DiscussionId);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
-}
+}   

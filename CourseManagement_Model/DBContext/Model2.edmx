@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CourseManagement557Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CourseManagement557Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Assignment">
           <Key>
             <PropertyRef Name="AssignmentId" />
@@ -14,6 +14,17 @@
           <Property Name="Title" Type="varchar" MaxLength="40" />
           <Property Name="Description" Type="varchar" MaxLength="100" />
           <Property Name="DueDate" Type="datetime" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscussionId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Content" Type="text" />
           <Property Name="Created_at" Type="datetime" />
           <Property Name="Updated_at" Type="datetime" />
         </EntityType>
@@ -30,6 +41,18 @@
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
           <Property Name="CourseImage" Type="varchar(max)" />
           <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="Discussion">
+          <Key>
+            <PropertyRef Name="DiscussionId" />
+          </Key>
+          <Property Name="DiscussionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Content" Type="text" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Updated_at" Type="datetime" />
         </EntityType>
         <EntityType Name="Enrollment">
           <Key>
@@ -99,6 +122,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Comment__Discuss__6477ECF3">
+          <End Role="Discussion" Type="Self.Discussion" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discussion">
+              <PropertyRef Name="DiscussionId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="DiscussionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__UserId__656C112C">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Course__Instruct__398D8EEE">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Course" Type="Self.Course" Multiplicity="*" />
@@ -108,6 +155,30 @@
             </Principal>
             <Dependent Role="Course">
               <PropertyRef Name="InstructorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Discussio__Cours__60A75C0F">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="Discussion" Type="Self.Discussion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="Discussion">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Discussio__UserI__619B8048">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Discussion" Type="Self.Discussion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Discussion">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -197,7 +268,9 @@
         </Association>
         <EntityContainer Name="CourseManagement557Model1StoreContainer">
           <EntitySet Name="Assignment" EntityType="Self.Assignment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discussion" EntityType="Self.Discussion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Enrollment" EntityType="Self.Enrollment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
@@ -207,9 +280,25 @@
             <End Role="Course" EntitySet="Course" />
             <End Role="Assignment" EntitySet="Assignment" />
           </AssociationSet>
+          <AssociationSet Name="FK__Comment__Discuss__6477ECF3" Association="Self.FK__Comment__Discuss__6477ECF3">
+            <End Role="Discussion" EntitySet="Discussion" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__UserId__656C112C" Association="Self.FK__Comment__UserId__656C112C">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
           <AssociationSet Name="FK__Course__Instruct__398D8EEE" Association="Self.FK__Course__Instruct__398D8EEE">
             <End Role="Users" EntitySet="Users" />
             <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Discussio__Cours__60A75C0F" Association="Self.FK__Discussio__Cours__60A75C0F">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Discussion" EntitySet="Discussion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Discussio__UserI__619B8048" Association="Self.FK__Discussio__UserI__619B8048">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Discussion" EntitySet="Discussion" />
           </AssociationSet>
           <AssociationSet Name="FK__Enrollmen__Cours__3D5E1FD2" Association="Self.FK__Enrollmen__Cours__3D5E1FD2">
             <End Role="Course" EntitySet="Course" />
@@ -240,8 +329,7 @@
             <End Role="Submission" EntitySet="Submission" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CourseManagement557Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -277,6 +365,7 @@
           <NavigationProperty Name="Enrollment" Relationship="Self.FK__Enrollmen__Cours__3D5E1FD2" FromRole="Course" ToRole="Enrollment" />
           <NavigationProperty Name="Material" Relationship="Self.FK__Material__Course__403A8C7D" FromRole="Course" ToRole="Material" />
           <NavigationProperty Name="Review" Relationship="Self.FK__Review__CourseId__4F7CD00D" FromRole="Course" ToRole="Review" />
+          <NavigationProperty Name="Discussion" Relationship="CourseManagement557Model1.FK__Discussio__Cours__60A75C0F" FromRole="Course" ToRole="Discussion" />
         </EntityType>
         <EntityType Name="Enrollment">
           <Key>
@@ -344,6 +433,8 @@
           <NavigationProperty Name="Enrollment" Relationship="Self.FK__Enrollmen__UserI__3C69FB99" FromRole="Users" ToRole="Enrollment" />
           <NavigationProperty Name="Review" Relationship="Self.FK__Review__UserId__4E88ABD4" FromRole="Users" ToRole="Review" />
           <NavigationProperty Name="Submission" Relationship="Self.FK__Submissio__UserI__4AB81AF0" FromRole="Users" ToRole="Submission" />
+          <NavigationProperty Name="Comment" Relationship="CourseManagement557Model1.FK__Comment__UserId__656C112C" FromRole="Users" ToRole="Comment" />
+          <NavigationProperty Name="Discussion" Relationship="CourseManagement557Model1.FK__Discussio__UserI__619B8048" FromRole="Users" ToRole="Discussion" />
         </EntityType>
         <Association Name="FK__Assignmen__Cours__4316F928">
           <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
@@ -497,7 +588,101 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Submission" EntitySet="Submission" />
           </AssociationSet>
+          <EntitySet Name="Comment" EntityType="CourseManagement557Model1.Comment" />
+          <EntitySet Name="Discussion" EntityType="CourseManagement557Model1.Discussion" />
+          <AssociationSet Name="FK__Comment__Discuss__6477ECF3" Association="CourseManagement557Model1.FK__Comment__Discuss__6477ECF3">
+            <End Role="Discussion" EntitySet="Discussion" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__UserId__656C112C" Association="CourseManagement557Model1.FK__Comment__UserId__656C112C">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Discussio__Cours__60A75C0F" Association="CourseManagement557Model1.FK__Discussio__Cours__60A75C0F">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Discussion" EntitySet="Discussion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Discussio__UserI__619B8048" Association="CourseManagement557Model1.FK__Discussio__UserI__619B8048">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Discussion" EntitySet="Discussion" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscussionId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Discussion" Relationship="CourseManagement557Model1.FK__Comment__Discuss__6477ECF3" FromRole="Comment" ToRole="Discussion" />
+          <NavigationProperty Name="Users" Relationship="CourseManagement557Model1.FK__Comment__UserId__656C112C" FromRole="Comment" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Discussion">
+          <Key>
+            <PropertyRef Name="DiscussionId" />
+          </Key>
+          <Property Name="DiscussionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Comment" Relationship="CourseManagement557Model1.FK__Comment__Discuss__6477ECF3" FromRole="Discussion" ToRole="Comment" />
+          <NavigationProperty Name="Course" Relationship="CourseManagement557Model1.FK__Discussio__Cours__60A75C0F" FromRole="Discussion" ToRole="Course" />
+          <NavigationProperty Name="Users" Relationship="CourseManagement557Model1.FK__Discussio__UserI__619B8048" FromRole="Discussion" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK__Comment__Discuss__6477ECF3">
+          <End Type="CourseManagement557Model1.Discussion" Role="Discussion" Multiplicity="0..1" />
+          <End Type="CourseManagement557Model1.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discussion">
+              <PropertyRef Name="DiscussionId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="DiscussionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__UserId__656C112C">
+          <End Type="CourseManagement557Model1.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="CourseManagement557Model1.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Discussio__Cours__60A75C0F">
+          <End Type="CourseManagement557Model1.Course" Role="Course" Multiplicity="0..1" />
+          <End Type="CourseManagement557Model1.Discussion" Role="Discussion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="Discussion">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Discussio__UserI__619B8048">
+          <End Type="CourseManagement557Model1.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="CourseManagement557Model1.Discussion" Role="Discussion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Discussion">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -590,6 +775,31 @@
                 <ScalarProperty Name="Created_at" ColumnName="Created_at" />
                 <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
                 <ScalarProperty Name="CreditPrice" ColumnName="CreditPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="CourseManagement557Model1.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DiscussionId" ColumnName="DiscussionId" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discussion">
+            <EntityTypeMapping TypeName="CourseManagement557Model1.Discussion">
+              <MappingFragment StoreEntitySet="Discussion">
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="DiscussionId" ColumnName="DiscussionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

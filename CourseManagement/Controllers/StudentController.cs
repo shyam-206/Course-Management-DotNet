@@ -65,7 +65,7 @@ namespace CourseManagement.Controllers
                  materialModel.Files = materialModel.FilePath.Split(',');
                  return View(materialModel);
              }*/
-
+            ViewBag.CourseId = CourseId;
             if (materialModelList != null)
             {
                 return View(materialModelList);
@@ -144,6 +144,37 @@ namespace CourseManagement.Controllers
             reviewModel.UserId = SessionHelper.UserId;
             bool review = studentRepository.AddReview(reviewModel);
             return RedirectToAction("CourseList");
+        }
+
+        public ActionResult Discussion(int CourseId)
+        {
+            ViewBag.CourseId = CourseId;
+            List<DiscussionModel> list = studentRepository.DiscussionModelList(CourseId);
+            return View(list);
+        }
+
+        [HttpPost]
+        public ActionResult Comment(CommentModel commentModel)
+        {
+            commentModel.UserId = SessionHelper.UserId;
+            bool save = studentRepository.AddComment(commentModel);
+
+            if (save)
+            {
+
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet] 
+        public ActionResult GetComments(int DiscussionId)
+        {
+            List<CommentModel> list = studentRepository.CommentList(DiscussionId);
+            return Json(list,JsonRequestBehavior.AllowGet);
         }
     }
 }

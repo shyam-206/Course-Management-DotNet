@@ -43,15 +43,12 @@
         background-color: #0056b3;
     }
 
-    .btn-outline-primary, .btn-warning, .btn-success,.btn-danger {
+    .btn-outline-primary, .btn-warning, .btn-success, .btn-danger {
         border-radius: 30px;
         padding: 10px 20px;
         margin-top: 10px;
     }
 
-    .review-section {
-        margin-top: 40px;
-    }
 
     .review {
         padding: 15px;
@@ -102,10 +99,55 @@
     }
 </style>
 
+<style>
+    /*position of dropdown */
+    .dropdown {
+        position: absolute;
+        display: inline-block;
+        right : 0;
+    }
+    
+    /* provide css to background of list items */
+    #list-items {
+        display: none;
+        position: relative;
+        background-color: white;
+        width: 120px;
+        margin-right : 10px;
+    }
+    #list-items a {
+        display: block;
+        text-decoration: none;
+        padding: 8px;
+        font-size : 13px;
+        text-align: center;
+        color : white;
+        border-bottom : 0.5px black solid;
+    }
+</style>
 <div class="container-fluid  mt-4">
+   
     <div class="card">
-        <div class="m-2 p-2" style="z-index : 1;">
-            <a class="rounded-4 border-5 bg-primary-subtle px-2 py-1" href="Index"><i class="fa-solid fa-arrow-left"></i></a>
+        <div class=" d-flex justify-content-between" style="z-index : 1;">
+
+            <div class="m-2 p-2">
+                <a class="rounded-4 border-5 bg-primary-subtle px-2 py-2" onclick="history.back()"><i class="fa-solid fa-arrow-left"></i></a>
+            </div>
+            <div class="dropdown">
+                <div class="text-end m-2 p-1">
+                    <button onclick="show_hide()" class="button btn bg-primary-subtle rounded-5 px-3 text-primary"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                </div>
+
+                <!-- dropdown list items will show when we click the drop button -->
+                <div id="list-items" class="bg-primary rounded-3">
+                    <a href="~/Instructor/EditCourse?CourseId=@Model.CourseId">Edit Course</a>
+                    <a href="~/Instructor/DeleteCourse?CourseId=@Model.CourseId">Delete Course</a>
+                    <a href="~/Instructor/UploadMaterial?CourseId=@Model.CourseId">Upload Material</a>
+                    <a href="~/Instructor/AssignmentList?CourseId=@Model.CourseId">Assignments</a>
+                    <a href="~/Instructor/Discussion?CourseId=@Model.CourseId" class="border-bottom-0">Discussion</a>
+
+                </div>
+            </div>
         </div>
         <img src="~/Content/CourseImages/@Model.Image" alt="Image Preview" class="img-fluid">
         <div class="card-body">
@@ -117,13 +159,10 @@
             </div>
 
             <div>
-                <a href="~/Instructor/EditCourse?CourseId=@Model.CourseId" class="btn btn-success btn-sm mt-3">Edit Course</a>
-                <a  href="~/Instructor/DeleteCourse?CourseId=@Model.CourseId" class="btn btn-danger btn-sm mt-3">Delete Course</a>
-                <a href="~/Instructor/UploadMaterial?CourseId=@Model.CourseId" class="btn btn-warning btn-sm mt-3">Upload Material</a>
-                <a href="~/Instructor/AssignmentList?CourseId=@Model.CourseId" class="btn btn-warning btn-sm mt-3">Assignments</a>
+
             </div>
             <div class="review-section">
-                <h3 class="mt-3">Reviews</h3>
+                <h3 class="">Reviews</h3>
                 <div class="reviews">
                     @foreach (var review in Model.Reviews)
                     {
@@ -164,5 +203,14 @@
                 star.style.color = '#ddd';
             }
         });
+    }
+
+    function show_hide() {
+        var click = document.getElementById("list-items");
+        if (click.style.display === "none") {
+            click.style.display = "block";
+        } else {
+            click.style.display = "none";
+        }
     }
 </script>

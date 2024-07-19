@@ -22,6 +22,10 @@
             font-family: Arial, sans-serif;
         }
 
+        body::-webkit-scrollbar{
+            display : none;
+        }
+
         .sidebar {
             min-height: 100vh;
             width: 250px;
@@ -154,7 +158,7 @@
 
     <div class="d-flex">
         <div class="sidebar">
-            <a href="#dashboard"><i class="fas fa-tachometer-alt fs-4 "></i> Dashboard</a>
+            <a href="Index"><i class="fas fa-tachometer-alt fs-4 "></i> Dashboard</a>
             <a href="CourseList"><i class="fas fa-book fs-4 "></i> Courses</a>
             <a href="AssignmentList"><i class="fas fa-tasks fs-4 "></i> Assignments</a>
             <a href="InstructorList"><i class="fas fa-chalkboard-teacher fs-4"></i> Instructors</a>
@@ -171,12 +175,12 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <a href="CourseList" class="text-primary text-decoration-none">Total Course</a>
+                                            <a href="CourseList" class="text-decoration-none" style="color: rgba(15, 192, 192, 1)">Total Course</a>
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.TotalCourseCount </div>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fa-solid fa-list-check fs-2 text-primary mt-3"></i>
+                                        <i class="fa-solid fa-list-check fs-2  mt-3" style="color: rgba(15, 192, 192,1)"></i>
                                     </div>
                                 </div>
                             </div>
@@ -188,12 +192,12 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <a href="AssignmentList" class="text-decoration-none text-primary">Total Assignment</a>
+                                            <a href="AssignmentList" class="text-decoration-none" style="color: rgba(15, 192, 192, 1)">Total Assignment</a>
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.TotalAssignmentCount </div>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fa-solid fa-list-check mt-3 fs-2 text-primary"></i>
+                                        <i class="fa-solid fa-list-check mt-3 fs-2" style="color: rgba(15, 192, 192, 1)"></i>
                                     </div>
                                 </div>
                             </div>
@@ -205,12 +209,12 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <a href="InstructorList" class="text-primary text-decoration-none">Total Instructor</a>
+                                            <a href="InstructorList" class="text-decoration-none" style="color: rgba(15, 192, 192, 1)">Total Instructor</a>
                                         </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.TotalCountOfInstructor </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" > @Model.TotalCountOfInstructor </div>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fa-solid fa-chalkboard-user text-primary fs-2 mt-3"></i>
+                                        <i class="fa-solid fa-chalkboard-user fs-2 mt-3" style="color: rgba(15, 192, 192, 1)"></i>
                                     </div>
                                 </div>
                             </div>
@@ -222,12 +226,12 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <a href="StudentList" class="text-primary text-decoration-none">Total Student</a>
+                                            <a href="StudentList" class="text-decoration-none" style="color: rgba(15, 192, 192, 1)">Total Student</a>
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.TotalCountOfStudent </div>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fa-solid fa-users-line text-primary fs-1 mt-3"></i>
+                                        <i class="fa-solid fa-users-line fs-1 mt-3" style="color: rgba(15, 192, 192, 1)"></i>
                                     </div>
                                 </div>
                             </div>
@@ -240,13 +244,13 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <a href="SubmissionList" class="text-primary fw-bold text-decoration-none">Submission Count</a>
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"> 
+                                            <a href="SubmissionList" class="fw-bold text-decoration-none" style="color: rgba(15, 192, 192, 1)">Submission Count</a>
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.TotalSubmissionCount </div>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fa fa-paper-plane text-primary fs-2 mt-1" aria-hidden="true"></i>
+                                        <i class="fa fa-paper-plane fs-2 mt-1" aria-hidden="true" style="color: rgba(15, 192, 192, 1)"></i>
                                     </div>
                                 </div>
                             </div>
@@ -258,12 +262,12 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <a href="MaterialList" class="text-primary fw-bold text-decoration-none">Material Count</a>
+                                            <a href="MaterialList" class="fw-bold text-decoration-none" style="color: rgba(15, 192, 192, 1)">Material Count</a>
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.MaterialCount </div>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fa-solid fa-file text-primary fs-1 mt-1"></i>
+                                        <i class="fa-solid fa-file fs-1 mt-1" style="color: rgba(15, 192, 192, 1)"></i>
                                     </div>
                                 </div>
                             </div>

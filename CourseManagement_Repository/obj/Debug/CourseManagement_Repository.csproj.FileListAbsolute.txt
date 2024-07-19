@@ -15,23 +15,6 @@ C:\Shyam Dhokiya\Practice c#  mvc\CourseManagement\CourseManagement_Repository\o
 C:\Shyam Dhokiya\Practice c#  mvc\CourseManagement\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.csproj.CopyComplete
 C:\Shyam Dhokiya\Practice c#  mvc\CourseManagement\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.dll
 C:\Shyam Dhokiya\Practice c#  mvc\CourseManagement\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.pdb
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.csproj.AssemblyReference.cache
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.csproj.CoreCompileInputs.cache
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.dll
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.pdb
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Repository.dll.config
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Repository.dll
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Repository.pdb
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Helper.dll
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Model.dll
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\EntityFramework.dll
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\EntityFramework.SqlServer.dll
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Helper.pdb
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Model.pdb
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Model.dll.config
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\EntityFramework.xml
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\EntityFramework.SqlServer.xml
-C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.csproj.CopyComplete
 C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Repository\bin\Debug\CourseManagement_Repository.dll.config
 C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Repository\bin\Debug\CourseManagement_Repository.dll
 C:\Users\admin\Desktop\Course-Management-.Net\CourseManagement_Repository\bin\Debug\CourseManagement_Repository.pdb
@@ -66,3 +49,20 @@ C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Re
 C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.csproj.CopyComplete
 C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.dll
 C:\Users\admin\Desktop\Shaligram Code\Course-Management-.Net\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.pdb
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Repository.dll.config
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Repository.dll
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Repository.pdb
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Helper.dll
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Model.dll
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\EntityFramework.dll
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Helper.pdb
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Model.pdb
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\CourseManagement_Model.dll.config
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\EntityFramework.xml
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.csproj.AssemblyReference.cache
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.csproj.CoreCompileInputs.cache
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.csproj.CopyComplete
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.dll
+C:\Shyam Dhokiya\CourseManagement\CourseManagement_Repository\obj\Debug\CourseManagement_Repository.pdb

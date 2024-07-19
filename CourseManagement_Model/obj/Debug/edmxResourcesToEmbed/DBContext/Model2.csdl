@@ -32,6 +32,7 @@
     <NavigationProperty Name="Enrollment" Relationship="Self.FK__Enrollmen__Cours__3D5E1FD2" FromRole="Course" ToRole="Enrollment" />
     <NavigationProperty Name="Material" Relationship="Self.FK__Material__Course__403A8C7D" FromRole="Course" ToRole="Material" />
     <NavigationProperty Name="Review" Relationship="Self.FK__Review__CourseId__4F7CD00D" FromRole="Course" ToRole="Review" />
+    <NavigationProperty Name="Discussion" Relationship="CourseManagement557Model1.FK__Discussio__Cours__60A75C0F" FromRole="Course" ToRole="Discussion" />
   </EntityType>
   <EntityType Name="Enrollment">
     <Key>
@@ -99,6 +100,8 @@
     <NavigationProperty Name="Enrollment" Relationship="Self.FK__Enrollmen__UserI__3C69FB99" FromRole="Users" ToRole="Enrollment" />
     <NavigationProperty Name="Review" Relationship="Self.FK__Review__UserId__4E88ABD4" FromRole="Users" ToRole="Review" />
     <NavigationProperty Name="Submission" Relationship="Self.FK__Submissio__UserI__4AB81AF0" FromRole="Users" ToRole="Submission" />
+    <NavigationProperty Name="Comment" Relationship="CourseManagement557Model1.FK__Comment__UserId__656C112C" FromRole="Users" ToRole="Comment" />
+    <NavigationProperty Name="Discussion" Relationship="CourseManagement557Model1.FK__Discussio__UserI__619B8048" FromRole="Users" ToRole="Discussion" />
   </EntityType>
   <Association Name="FK__Assignmen__Cours__4316F928">
     <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
@@ -252,5 +255,99 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="Submission" EntitySet="Submission" />
     </AssociationSet>
+    <EntitySet Name="Comment" EntityType="CourseManagement557Model1.Comment" />
+    <EntitySet Name="Discussion" EntityType="CourseManagement557Model1.Discussion" />
+    <AssociationSet Name="FK__Comment__Discuss__6477ECF3" Association="CourseManagement557Model1.FK__Comment__Discuss__6477ECF3">
+      <End Role="Discussion" EntitySet="Discussion" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comment__UserId__656C112C" Association="CourseManagement557Model1.FK__Comment__UserId__656C112C">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Discussio__Cours__60A75C0F" Association="CourseManagement557Model1.FK__Discussio__Cours__60A75C0F">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Discussion" EntitySet="Discussion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Discussio__UserI__619B8048" Association="CourseManagement557Model1.FK__Discussio__UserI__619B8048">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Discussion" EntitySet="Discussion" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiscussionId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Created_at" Type="DateTime" Precision="3" />
+    <Property Name="Updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Discussion" Relationship="CourseManagement557Model1.FK__Comment__Discuss__6477ECF3" FromRole="Comment" ToRole="Discussion" />
+    <NavigationProperty Name="Users" Relationship="CourseManagement557Model1.FK__Comment__UserId__656C112C" FromRole="Comment" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Discussion">
+    <Key>
+      <PropertyRef Name="DiscussionId" />
+    </Key>
+    <Property Name="DiscussionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Created_at" Type="DateTime" Precision="3" />
+    <Property Name="Updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Comment" Relationship="CourseManagement557Model1.FK__Comment__Discuss__6477ECF3" FromRole="Discussion" ToRole="Comment" />
+    <NavigationProperty Name="Course" Relationship="CourseManagement557Model1.FK__Discussio__Cours__60A75C0F" FromRole="Discussion" ToRole="Course" />
+    <NavigationProperty Name="Users" Relationship="CourseManagement557Model1.FK__Discussio__UserI__619B8048" FromRole="Discussion" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK__Comment__Discuss__6477ECF3">
+    <End Type="CourseManagement557Model1.Discussion" Role="Discussion" Multiplicity="0..1" />
+    <End Type="CourseManagement557Model1.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discussion">
+        <PropertyRef Name="DiscussionId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="DiscussionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comment__UserId__656C112C">
+    <End Type="CourseManagement557Model1.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="CourseManagement557Model1.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Discussio__Cours__60A75C0F">
+    <End Type="CourseManagement557Model1.Course" Role="Course" Multiplicity="0..1" />
+    <End Type="CourseManagement557Model1.Discussion" Role="Discussion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="Discussion">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Discussio__UserI__619B8048">
+    <End Type="CourseManagement557Model1.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="CourseManagement557Model1.Discussion" Role="Discussion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Discussion">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

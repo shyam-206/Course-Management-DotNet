@@ -4,6 +4,7 @@ using CourseManagement_Model.ViewModel;
 using CourseManagement_Repository.Interface;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -241,5 +242,48 @@ namespace CourseManagement_Repository.Service
             return avg;
         }
 
+        public bool CreatePost(DiscussionModel discussionModel)
+        {
+            Discussion discussion = new Discussion();
+            discussion.CourseId = discussionModel.CourseId;
+            discussion.UserId = discussionModel.UserId;
+            discussion.Title = discussionModel.Title;
+            discussion.Content = discussionModel.Content;
+            discussion.Created_at = DateTime.Now;
+
+            _context.Discussion.Add(discussion);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public List<DiscussionModel> DiscussionModelList(int CourseId)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[]
+            {
+                new SqlParameter("@CourseId",CourseId)
+            };
+            List<DiscussionModel> list = _context.Database.SqlQuery<DiscussionModel>("exec GetDiscussionList @CourseId",sqlParameter).ToList();
+            foreach (var item in list)
+            {
+                SqlParameter[] sqlParameter1 = new SqlParameter[]
+                {
+                    new SqlParameter("@DiscussionId",item.DiscussionId)
+                };
+
+                item.Comments = _context.Database.SqlQuery<CommentModel>("exec CommentList @DiscussionId", sqlParameter1).ToList();
+            }
+            return list;
+        }
+
+        public List<CommentModel> CommentList(int DiscussionId)
+        {
+            SqlParameter[] sqlParameter1 = new SqlParameter[]
+            {
+                new SqlParameter("@DiscussionId",DiscussionId)
+            };
+            List<CommentModel> list = _context.Database.SqlQuery<CommentModel>("exec CommentList @DiscussionId", sqlParameter1).ToList();
+            return list;
+
+        }
     }
 }

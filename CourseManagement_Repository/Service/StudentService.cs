@@ -4,6 +4,7 @@ using CourseManagement_Model.ViewModel;
 using CourseManagement_Repository.Interface;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +21,11 @@ namespace CourseManagement_Repository.Service
             {
                 int save = 0;
                 Users user = _context.Users.Where(m => m.UserId == UserId).FirstOrDefault();
-                if(user != null && user.CreditPrice + Amount <= 20000)
+                if (user != null && user.CreditPrice + Amount <= 20000)
                 {
                     user.CreditPrice += Amount;
                     user.Updated_at = DateTime.Now;
-                    save  =_context.SaveChanges();
+                    save = _context.SaveChanges();
                 }
                 return save > 0 ? true : false;
             }
@@ -104,9 +105,9 @@ namespace CourseManagement_Repository.Service
 
         public decimal GetAmount(int UserId)
         {
-            decimal amount = 0; 
+            decimal amount = 0;
             Users user = _context.Users.Where(m => m.UserId == UserId).FirstOrDefault();
-            if(user != null)
+            if (user != null)
             {
                 amount = (decimal)user.CreditPrice;
             }
@@ -117,16 +118,16 @@ namespace CourseManagement_Repository.Service
         {
             try
             {
-               
+
                 List<Assignment> list = _context.Assignment.Where(m => m.CourseId == CourseId).ToList();
-                List<AssignmentModel>  assignmentModelList = InstructorHelper.ConvertAssignmentListToAssignmentModelList(list);
-                foreach(var item in assignmentModelList)
+                List<AssignmentModel> assignmentModelList = InstructorHelper.ConvertAssignmentListToAssignmentModelList(list);
+                foreach (var item in assignmentModelList)
                 {
                     Submission submission = _context.Submission.Where(m => m.AssignmentId == item.AssignmentId && m.UserId == UserId).FirstOrDefault();
-                    if(submission != null)
+                    if (submission != null)
                     {
                         item.Is_submit = true;
-                        if(submission.Grade != null && submission.Feedback != null)
+                        if (submission.Grade != null && submission.Feedback != null)
                         {
                             item.Grade = (decimal)submission.Grade;
                             item.Feedback = submission.Feedback;
@@ -136,13 +137,13 @@ namespace CourseManagement_Repository.Service
                             item.Grade = 0;
                             item.Feedback = "Review Pending";
                         }
-                        
+
                     }
                     else
                     {
                         item.Is_submit = false;
                     }
-                    
+
 
                 }
                 return assignmentModelList != null ? assignmentModelList : null;
@@ -154,7 +155,7 @@ namespace CourseManagement_Repository.Service
             }
         }
 
-        public CourseModel GetCourseById(int CourseId,int UserId)
+        public CourseModel GetCourseById(int CourseId, int UserId)
         {
             try
             {
@@ -176,7 +177,7 @@ namespace CourseManagement_Repository.Service
         public decimal CalcAvarageRating(List<Review> reviews)
         {
             decimal avg = 0;
-            if(reviews != null && reviews.Count() > 0)
+            if (reviews != null && reviews.Count() > 0)
             {
                 decimal count = reviews.Count();
                 foreach (var item in reviews)
@@ -190,7 +191,7 @@ namespace CourseManagement_Repository.Service
             return avg;
         }
 
-        public MaterialModel GetMaterial(int CourseId,int MaterialId)
+        public MaterialModel GetMaterial(int CourseId, int MaterialId)
         {
             try
             {
@@ -221,7 +222,7 @@ namespace CourseManagement_Repository.Service
             {
                 List<Material> list = _context.Material.Where(m => m.CourseId == CourseId).ToList();
                 List<MaterialModel> list2 = new List<MaterialModel>();
-                if(list != null)
+                if (list != null)
                 {
                     list2 = MaterialHelper.ConvertMaterialListToMaterialModelList(list);
                 }
@@ -241,7 +242,7 @@ namespace CourseManagement_Repository.Service
                 int SaveAssignment = 0;
                 Assignment assignment = _context.Assignment.Where(m => m.AssignmentId == AssignmentId).FirstOrDefault();
                 Submission submission = new Submission();
-                if(assignment != null)
+                if (assignment != null)
                 {
                     submission.AssignmentId = assignment.AssignmentId;
                     submission.UserId = UserId;
@@ -251,10 +252,10 @@ namespace CourseManagement_Repository.Service
 
                 }
 
-                
+
                 return SaveAssignment > 0 ? true : false;
 
-            } 
+            }
             catch (Exception)
             {
 
@@ -268,7 +269,7 @@ namespace CourseManagement_Repository.Service
             {
                 int updateAmount = 0;
                 Users user = _context.Users.Where(m => m.UserId == UserId).FirstOrDefault();
-                if(user != null)
+                if (user != null)
                 {
                     user.CreditPrice -= Amount;
                     user.Updated_at = DateTime.Now;
@@ -282,6 +283,54 @@ namespace CourseManagement_Repository.Service
 
                 throw ex;
             }
+        }
+
+        public List<DiscussionModel> DiscussionModelList(int CourseId)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[]
+             {
+                new SqlParameter("@CourseId",CourseId)
+             };
+
+            List<DiscussionModel> list = _context.Database.SqlQuery<DiscussionModel>("exec GetDiscussionList @CourseId", sqlParameter).ToList();
+
+            foreach (var item in list)
+            {
+                SqlParameter[] sqlParameter1 = new SqlParameter[]
+                {
+                    new SqlParameter("@DiscussionId",item.DiscussionId)
+                };
+
+                item.Comments = _context.Database.SqlQuery<CommentModel>("exec CommentList @DiscussionId", sqlParameter1).ToList();
+            }
+            return list;
+        }
+
+        public bool AddComment(CommentModel commentModel)
+        {
+            int save = 0;
+            Comment comment = new Comment()
+            {
+                DiscussionId = commentModel.DiscussionId,
+                Content = commentModel.Content,
+                UserId = commentModel.UserId,
+                Created_at = DateTime.Now
+            };
+
+            _context.Comment.Add(comment);
+            save = _context.SaveChanges();
+
+            return save > 0 ? true : false;
+        }
+
+        public List<CommentModel> CommentList(int DiscussionId)
+        {
+            SqlParameter[] sqlParameter1 = new SqlParameter[]
+            {
+                new SqlParameter("@DiscussionId",DiscussionId)
+            };
+            List<CommentModel> list = _context.Database.SqlQuery<CommentModel>("exec CommentList @DiscussionId", sqlParameter1).ToList();
+            return list;
         }
     }
 }

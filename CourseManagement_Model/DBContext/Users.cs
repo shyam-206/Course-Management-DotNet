@@ -21,6 +21,8 @@ namespace CourseManagement_Model.DBContext
             this.Enrollment = new HashSet<Enrollment>();
             this.Review = new HashSet<Review>();
             this.Submission = new HashSet<Submission>();
+            this.Comment = new HashSet<Comment>();
+            this.Discussion = new HashSet<Discussion>();
         }
     
         public int UserId { get; set; }
@@ -40,5 +42,9 @@ namespace CourseManagement_Model.DBContext
         public virtual ICollection<Review> Review { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Submission> Submission { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Discussion> Discussion { get; set; }
     }
 }

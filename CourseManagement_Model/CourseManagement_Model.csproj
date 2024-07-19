@@ -54,7 +54,13 @@
     <Compile Include="DBContext\Assignment.cs">
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBContext\Comment.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBContext\Course.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\Discussion.cs">
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\Enrollment.cs">
@@ -104,8 +110,10 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AssignmentModel.cs" />
+    <Compile Include="ViewModel\CommentModel.cs" />
     <Compile Include="ViewModel\CourseModel.cs" />
     <Compile Include="ViewModel\DashboardModel.cs" />
+    <Compile Include="ViewModel\DiscussionModel.cs" />
     <Compile Include="ViewModel\EnrollmentModel.cs" />
     <Compile Include="ViewModel\LoginModel.cs" />
     <Compile Include="ViewModel\MaterialModel.cs" />

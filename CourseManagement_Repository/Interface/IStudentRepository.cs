@@ -22,5 +22,10 @@ namespace CourseManagement_Repository.Interface
         CourseModel GetCourseById(int CourseId,int UserId);
 
         bool AddReview(ReviewModel reviewModel);
+        List<DiscussionModel> DiscussionModelList(int CourseId);
+
+        bool AddComment(CommentModel commentModel);
+
+        List<CommentModel> CommentList(int DiscussionId);
     }
 }

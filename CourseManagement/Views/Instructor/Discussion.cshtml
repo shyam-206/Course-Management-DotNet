@@ -1,0 +1,159 @@
+﻿@model List<CourseManagement_Model.ViewModel.DiscussionModel>
+<style>
+    .commentContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+        background: white;
+        padding: 2px;
+        border-radius: 5px;
+    }
+
+    .CommentInput {
+        border: none !important;
+        background: white !important;
+    }
+
+    .CommentInput {
+        box-shadow: none !important;
+    }
+
+    .offcanvas-custom {
+        overflow: scroll;
+        margin: 10px;
+        left: 2rem;
+        width: 98%;
+        height : 250px;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        z-index: 1100;
+        background: white;
+        padding: 10px;
+
+    }
+
+    .offcanvas-custom::-webkit-scrollbar {
+        display: none;
+    }
+</style>
+<div class="mt-2 container">
+    <div class="d-flex gap-2 justify-content-center mb-4">
+        <button type="button" class="btn btn-outline-secondary d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="bi bi-pencil-square"></i>
+            Create Post
+        </button>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Discussion Post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="CreatePost" method="post">
+                        <input type="hidden" name="CourseId" value="@ViewBag.CourseId" />
+                        <div class="form-group mt-2">
+                            <input type="text" name="Title" placeholder="Enter your Title" class="form-control" />
+                        </div>
+                        <div class="form-group mt-2">
+                            <input type="text" name="Content" placeholder="Enter Your Content" class="form-control" />
+                        </div>
+                        <div>
+
+                        </div>
+                        <div class="mt-2 form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <div class="card-body">
+            <div class="p-2">
+                <a class="rounded-4 border-5 bg-primary-subtle px-2 py-1" href="~/Instructor/ViewCourse?CourseId=@ViewBag.CourseId"><i class="fa-solid fa-arrow-left"></i></a>
+            </div>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="mt-2 border-1 bg-primary-subtle p-3 m-1">
+                        <p class="fw-bold fs-3">@item.Title</p>
+                        <p class="fs-6">@item.Content</p>
+                        <div class="mt-2 d-flex align-items-center">
+                            <button type="button" class="btn mt-2 commentBtn" data-discussion-id="@item.DiscussionId"><i class="fa-regular fa-comment fs-4"></i></button>
+                            <span class="fs-5 fw-bold mt-0">@item.Comments.Count()</span>
+                        </div>
+                    </div>
+
+                    <div class="offcanvas-custom d-none" tabindex="-1" id="offcanvasBottom @item.DiscussionId" aria-labelledby="offcanvasBottomLabel">
+                        <div class="offcanvas-header m-2">
+                            <h5 class="offcanvas-title text-secondary" id="offcanvasBottomLabel">Comments</h5>
+                            <button type="button" class="btn-close" aria-label="Close" data-discussion-id="@item.DiscussionId"></button>
+                        </div>
+                        <div class="offcanvas-body m-2" id="offcanvasContent @item.DiscussionId">
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".commentBtn").click(function () {
+            var discussionId = $(this).data("discussion-id");
+            var offcanvas = document.getElementById('offcanvasBottom ' + discussionId)
+
+
+            if (offcanvas.classList.contains("d-none")) {
+                loadComments(discussionId)
+                offcanvas.classList.remove("d-none")
+                $(offcanvas).css('display', 'none');
+
+                $(offcanvas).slideDown(500)
+            } else {
+                $(offcanvas).slideUp(500, function () {
+                    offcanvas.classList.add("d-none");
+                })
+            }
+
+        });
+
+        $(".btn-close").click(function () {
+            var discussionId = $(this).data("discussion-id");
+            var offcanvas = document.getElementById('offcanvasBottom ' + discussionId)
+            $(offcanvas).slideUp(500, function () {
+                offcanvas.classList.add("d-none");
+            })
+        });
+
+        function loadComments(discussionId) {
+            var offcanvasContent = document.getElementById("offcanvasContent " + discussionId)
+            $.ajax({
+                type: "GET",
+                url: "/Student/GetComments?DiscussionId=" + discussionId,
+                success: function (data) {
+
+                    var commentsHtml = ""
+                    data.forEach(comment => {
+                        commentsHtml += `<div class="offcanvas-body m-2" id="offcanvasContent ${discussionId}">
+                                            <div class="border border-1 border-dark mx-1 my-2 rounded-3 p-2 bg-body-secondary">
+                                                <div class="d-flex justify-content-between"><p class="h5 fs-4">${comment.Username}</p><span>${comment.Formatdate}</span></div>
+                                                <p>${comment.Content}</p>
+                                            </div>
+                                        </div>`
+                    })
+                    offcanvasContent.innerHTML = commentsHtml;
+                }
+            })
+        }
+    })
+</script>

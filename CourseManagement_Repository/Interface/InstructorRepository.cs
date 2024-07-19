@@ -14,12 +14,13 @@ namespace CourseManagement_Repository.Interface
         List<AssignmentModel> GetAssignmentModelList(int CourseId);
         List<SubmitAssignmentModel> GetSubmitAssignmentList(int UserId);
         bool SubmitReview(SubmitAssignmentModel submitAssignment);
-
         CourseModel GetCourseModelById(int CourseId);
         bool EditCourse(CourseModel courseModel);
-
         bool DeleteCourse(int CourseId);
-
         CourseModel ViewCourse(int CourseId);
+        bool CreatePost(DiscussionModel discussionModel);
+        List<DiscussionModel> DiscussionModelList(int CourseId);
+        List<CommentModel> CommentList(int DiscussionId);
+
     }
 }

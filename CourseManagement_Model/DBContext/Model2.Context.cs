@@ -32,5 +32,7 @@ namespace CourseManagement_Model.DBContext
         public virtual DbSet<Review> Review { get; set; }
         public virtual DbSet<Submission> Submission { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Comment> Comment { get; set; }
+        public virtual DbSet<Discussion> Discussion { get; set; }
     }
 }

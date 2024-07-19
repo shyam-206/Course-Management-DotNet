@@ -21,11 +21,11 @@
         <div class="card-body">
 
             <table class="table table-bordered table-hover">
-                <thead>
+                <thead class="table-primary">
                     <tr>
-                        <td>Course Name</td>
-                        <td>Materila Name</td>
-                        <td>File Name</td>
+                        <th>Course Name</th>
+                        <th>Materila Name</th>
+                        <th>File Name</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +41,7 @@
                                     {
 
                                         <a href="~/Admin/ViewMaterial?file=@file" class="mx-2">@file</a>
-                                        
+
                                     }
                                 </td>
                             </tr>
@@ -49,6 +49,10 @@
                     }
                 </tbody>
             </table>
+            <div class="m-2">
+                <a href="Index" class="btn btn-primary btn-sm">Back To Dashboard</a>
+            </div>
         </div>
+       
     </div>
 </div>

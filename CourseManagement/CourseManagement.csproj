@@ -389,6 +389,8 @@
     <Content Include="Views\Admin\StudentList.cshtml" />
     <Content Include="Views\Student\ViewCourse.cshtml" />
     <Content Include="Views\Instructor\ViewCourse.cshtml" />
+    <Content Include="Views\Instructor\Discussion.cshtml" />
+    <Content Include="Views\Student\Discussion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

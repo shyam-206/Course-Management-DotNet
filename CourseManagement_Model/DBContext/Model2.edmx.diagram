@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b2fccf5da174416f8033e9795d996927" Name="Diagram1" ZoomLevel="52">
+      <Diagram DiagramId="b2fccf5da174416f8033e9795d996927" Name="Diagram1" ZoomLevel="85">
         <EntityTypeShape EntityType="CourseManagement557Model1.Assignment" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CourseManagement557Model1.Course" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CourseManagement557Model1.Enrollment" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
@@ -21,6 +21,12 @@
         <AssociationConnector Association="CourseManagement557Model1.FK__Enrollmen__UserI__3C69FB99" ManuallyRouted="false" />
         <AssociationConnector Association="CourseManagement557Model1.FK__Review__UserId__4E88ABD4" ManuallyRouted="false" />
         <AssociationConnector Association="CourseManagement557Model1.FK__Submissio__UserI__4AB81AF0" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CourseManagement557Model1.Comment" Width="1.5" PointX="3" PointY="2.125" />
+        <EntityTypeShape EntityType="CourseManagement557Model1.Discussion" Width="1.5" PointX="0.5" PointY="1.125" />
+        <AssociationConnector Association="CourseManagement557Model1.FK__Comment__Discuss__6477ECF3" />
+        <AssociationConnector Association="CourseManagement557Model1.FK__Comment__UserId__656C112C" />
+        <AssociationConnector Association="CourseManagement557Model1.FK__Discussio__Cours__60A75C0F" />
+        <AssociationConnector Association="CourseManagement557Model1.FK__Discussio__UserI__619B8048" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
