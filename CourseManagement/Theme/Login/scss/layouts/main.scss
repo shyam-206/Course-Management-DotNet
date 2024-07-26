@@ -1,4 +1,4 @@
-.signup {
+}.signup {
     margin-bottom: 150px;
 }
 .signup-content {
@@ -194,7 +194,7 @@ label.valid {
 .social-login {
     @extend display-flex;
     @include align-items(center);
-    margin-top: 80px;
+    margin-top: 20px;
 }
 .social-label {
     display: inline-block;

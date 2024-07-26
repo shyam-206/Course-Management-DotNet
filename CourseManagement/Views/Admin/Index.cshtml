@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Course Management</title>
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
@@ -22,9 +22,9 @@
             font-family: Arial, sans-serif;
         }
 
-        body::-webkit-scrollbar{
-            display : none;
-        }
+            body::-webkit-scrollbar {
+                display: none;
+            }
 
         .sidebar {
             min-height: 100vh;
@@ -35,23 +35,25 @@
             padding-top: 20px;
         }
 
-        .sidebar a {
-            text-decoration: none;
-            font-size: 18px;
-            color: #ffffff; /* White text */
-            display: block;
-            padding: 5px 15px;
-            transition: all 0.3s ease;
-        }
+            .sidebar a {
+                text-decoration: none;
+                font-size: 18px;
+                color: #ffffff; /* White text */
+                display: block;
+                padding: 5px 15px;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
 
-        .sidebar a:hover {
-            background-color: #2980b9; /* Darker blue on hover */
-        }
+                .sidebar a:hover {
+                    background-color: #2980b9; /* Darker blue on hover */
+                }
 
         .main-content {
             width: calc(100% - 200px); /* Adjust for sidebar width */
             padding: 20px;
-            
         }
 
         .card-custom {
@@ -62,10 +64,10 @@
             margin-bottom: 20px;
         }
 
-        .card-custom:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
+            .card-custom:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
 
         .border-left-primary {
             border-left-color: #9cbfdd; /* Light blue border */
@@ -101,9 +103,9 @@
             text-decoration: none;
         }
 
-        .action-link:hover {
-            text-decoration: underline;
-        }
+            .action-link:hover {
+                text-decoration: underline;
+            }
 
         .navbar {
             background-color: #2980b9; /* Blue navbar */
@@ -126,187 +128,204 @@
             margin-top: 8px;
         }
 
-        .navbar .nav-item .btn {
-            font-size: 0.875rem;
-        }
+            .navbar .nav-item .btn {
+                font-size: 0.875rem;
+            }
 
-        .navbar .nav-item .btn:hover {
-            opacity: 0.8;
+                .navbar .nav-item .btn:hover {
+                    opacity: 0.8;
+                }
+
+
+        @@media only screen and (max-width: 600px) {
+            .main-content {
+                width: 85vw;
+            }
+
+            .sidebar {
+                width: 70px;
+            }
+
+                .sidebar > a > span {
+                    display: none;
+                }
         }
     </style>
 </head>
 <body>
-    <div class="nav-container">
-        <nav class="navbar navbar-dark" style="background: #2980b9 ">
-            <div class="container-fluid">
-                <div class="navbar-brand d-flex gap-2">
-                    <img src="~/Content/logo.png" class="rounded-5 " style="width: 60px;" />
-                    <div style="margin-top:12px;">
-                        <span class="navbar-text h3 text-white">
-                            Course Management
-                        </span>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center mt-2 gap-2">
-                    <p class="text-white h6 mt-3">@Session["Useremail"]</p>
-                    <a href="/Login/Logout" class="text-white text-decoration-none btn btn-sm btn-primary">Logout</a>
+    <nav class="navbar navbar-dark w-100" style="background: #2980b9 ">
+        <div class="container-fluid">
+            <div class="navbar-brand d-flex gap-2">
+                <img src="~/Content/logo.png" class="rounded-5 " style="width: 60px;" />
+                <div style="margin-top:12px;">
+                    <span class="navbar-text text-white">
+                        Course Management
+                    </span>
                 </div>
             </div>
-        </nav>
-    </div>
-    
-
+            <div class="d-flex align-items-center mt-2 gap-2">
+                <p class="text-white h6 mt-3">@Session["Useremail"]</p>
+                <a href="/Login/Logout" class="text-white text-decoration-none btn btn-sm btn-primary">Logout</a>
+            </div>
+        </div>
+    </nav>
     <div class="d-flex">
         <div class="sidebar">
-            <a href="Index"><i class="fas fa-tachometer-alt fs-4 "></i> Dashboard</a>
-            <a href="CourseList"><i class="fas fa-book fs-4 "></i> Courses</a>
-            <a href="AssignmentList"><i class="fas fa-tasks fs-4 "></i> Assignments</a>
-            <a href="InstructorList"><i class="fas fa-chalkboard-teacher fs-4"></i> Instructors</a>
-            <a href="StudentList"><i class="fas fa-users fs-4"></i> Students</a>
-            <a href="SubmissionList"><i class="fas fa-paper-plane fs-4 "></i> Submissions</a>
-            <a href="MaterialList"><i class="fas fa-file fs-4 "></i> Materials</a>
+            <a href="Index"><i class="fas fa-tachometer-alt fs-4 "></i><span>Dashboard</span></a>
+            <a href="CourseList"><i class="fas fa-book fs-4 "></i> <span>Courses</span></a>
+            <a href="AssignmentList"><i class="fas fa-tasks fs-4 "></i> <span>Assignments</span></a>
+            <a href="InstructorList"><i class="fas fa-chalkboard-teacher fs-4"></i> <span>Instructors</span></a>
+            <a href="StudentList"><i class="fas fa-users fs-4"></i> <span>Students </span> </a>
+            <a href="SubmissionList"><i class="fas fa-paper-plane fs-4 "></i> <span>Submissions</span></a>
+            <a href="MaterialList"><i class="fas fa-file fs-4 "></i> <span>Materials</span></a>
         </div>
         <div class="main-content">
-            <div class="mt-3 container-fluid mx-4">
+            <div class="mt-3 container-fluid">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <a href="CourseList" class="text-decoration-none" style="color: rgba(15, 192, 192, 1)">Total Course</a>
-                                        </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.TotalCourseCount </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fa-solid fa-list-check fs-2  mt-3" style="color: rgba(15, 192, 192,1)"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-lg-3 col-md-6 mb-4">
-                        <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <a href="AssignmentList" class="text-decoration-none" style="color: rgba(15, 192, 192, 1)">Total Assignment</a>
-                                        </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.TotalAssignmentCount </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fa-solid fa-list-check mt-3 fs-2" style="color: rgba(15, 192, 192, 1)"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <a href="InstructorList" class="text-decoration-none" style="color: rgba(15, 192, 192, 1)">Total Instructor</a>
-                                        </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800" > @Model.TotalCountOfInstructor </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fa-solid fa-chalkboard-user fs-2 mt-3" style="color: rgba(15, 192, 192, 1)"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <a href="StudentList" class="text-decoration-none" style="color: rgba(15, 192, 192, 1)">Total Student</a>
-                                        </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.TotalCountOfStudent </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fa-solid fa-users-line fs-1 mt-3" style="color: rgba(15, 192, 192, 1)"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"> 
-                                            <a href="SubmissionList" class="fw-bold text-decoration-none" style="color: rgba(15, 192, 192, 1)">Submission Count</a>
-                                        </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.TotalSubmissionCount </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fa fa-paper-plane fs-2 mt-1" aria-hidden="true" style="color: rgba(15, 192, 192, 1)"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <a href="MaterialList" class="fw-bold text-decoration-none" style="color: rgba(15, 192, 192, 1)">Material Count</a>
-                                        </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.MaterialCount </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fa-solid fa-file fs-1 mt-1" style="color: rgba(15, 192, 192, 1)"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6 col-md-12 canvas">
-                        <div class="mt-3">
-                            <h3 class="mb-3">Students vs. Course Enrollments</h3>
-                            <div class="card ">
+                    <div class="col-lg-3 col-md-6 col-12 mb-4">
+                        <a href="CourseList" class="text-decoration-none">
+                            <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
                                 <div class="card-body">
-                                    <canvas id="enrollmentChart"></canvas>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <span style="color: rgba(15, 192, 192, 1)">Total Course</span>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.TotalCourseCount </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-list-check fs-2  mt-3" style="color: rgba(15, 192, 192,1)"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                    <div class="col-lg-6 col-md-12 canvas">
-                        <div class="mt-3">
-                            <h3 class="mb-3">Course Ratings</h3>
-                            <div class="card">
+                    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                        <a href="AssignmentList" class="text-decoration-none">
+                            <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
                                 <div class="card-body">
-                                    <canvas id="ratingChart"></canvas>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <span class="text-decoration-none" style="color: rgba(15, 192, 192, 1)">Total Assignment</span>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.TotalAssignmentCount </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-list-check mt-3 fs-2" style="color: rgba(15, 192, 192, 1)"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                        <a href="InstructorList" class="text-decoration-none">
+                            <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <span style="color: rgba(15, 192, 192, 1)" class="flex-md-column flex-wrap">Total Instructor</span>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.TotalCountOfInstructor </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-chalkboard-user fs-1 mt-3" style="color: rgba(15, 192, 192, 1)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                        <a href="StudentList" class="text-decoration-none">
+                            <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <span style="color: rgba(15, 192, 192, 1)">Total Student</span>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.TotalCountOfStudent </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-users-line fs-1 mt-3" style="color: rgba(15, 192, 192, 1)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                        <a href="SubmissionList" class="fw-bold text-decoration-none">
+                            <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <span style="color: rgba(15, 192, 192, 1)">Submission Count</span>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.TotalSubmissionCount </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-paper-plane fs-2 mt-1" aria-hidden="true" style="color: rgba(15, 192, 192, 1)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                        <a href="MaterialList" class="fw-bold text-decoration-none">
+                            <div class="card card-custom border-left-primary shadow h-100 py-2 bg-primary-subtle">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <span style="color: rgba(15, 192, 192, 1)">Material Count</span>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> @Model.MaterialCount </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-paper-plane fs-2 mt-1" aria-hidden="true" style="color: rgba(15, 192, 192, 1)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
 
             </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <div class="border border-1 border-dark rounded-2 p-2">
+                        <div class="mt-3">
+                            <p class="mb-3 text-wrap fs-5">Students vs. Course Enrollments</p>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <canvas id="enrollmentChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12 ">
+                    <div class="border border-1 border-dark rounded-2 p-2">
+                        <div class="mt-3">
+                            <p class="mb-3 text-wrap fs-5">Course Ratings</p>
+                            <div class="">
+                                <canvas id="ratingChart"></canvas>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-
-
-
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/core@2.6.0/dist/umd/popper.min.js"></script>
     <script>
@@ -336,13 +355,6 @@
                         y: {
                             beginAtZero: true,
                         },
-                        x: {
-                            ticks: {
-                                font: {
-                                    size: 11 // Adjust font size for x-axis labels
-                                }
-                            }
-                        }
                     }
                 }
             };
@@ -372,13 +384,7 @@
                         y: {
                             beginAtZero: true,
                         },
-                        x: {
-                            ticks: {
-                                font: {
-                                    size: 11 // Adjust font size for x-axis labels
-                                }
-                            }
-                        }
+
                     }
                 }
             };

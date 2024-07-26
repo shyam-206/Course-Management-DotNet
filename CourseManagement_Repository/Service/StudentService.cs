@@ -160,11 +160,15 @@ namespace CourseManagement_Repository.Service
             try
             {
                 Course course = _context.Course.FirstOrDefault(m => m.CourseId == CourseId);
-                CourseModel courseModel = CourseHelper.ConvertCourseToCourseModel(course);
+                CourseModel courseModel = new CourseModel();
+                if(course != null && course.CourseId > 0) { 
+                  courseModel = CourseHelper.ConvertCourseToCourseModel(course);
                 courseModel.IsEnrollment = _context.Enrollment.FirstOrDefault(m => m.CourseId == courseModel.CourseId && m.UserId == UserId) != null ? true : false;
                 List<Review> reviews = _context.Review.Where(m => m.CourseId == CourseId).ToList();
                 courseModel.AvgRating = CalcAvarageRating(reviews);
                 courseModel.Reviews = CourseHelper.ConvertReviewListToList(reviews);
+                }
+                
                 return courseModel;
             }
             catch (Exception ex)

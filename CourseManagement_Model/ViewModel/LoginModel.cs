@@ -13,8 +13,5 @@ namespace CourseManagement_Model.ViewModel
         public string Email { get; set; }
         [Required(ErrorMessage = "Please Enter a password")]
         public string Password { get; set; }
-
-        [Required(ErrorMessage = "Please select a role ?")]
-        public string Role { get; set; }
     }
 }

@@ -30,11 +30,12 @@ namespace CourseManagement_Repository.Service
         {
             try
             {
-                Users user = new Users();
-                user = _context.Users.Where(m => m.Email == loginModel.Email && m.Role == loginModel.Role && m.Password == loginModel.Password).FirstOrDefault();
+                bool Exist;
+                Exist = _context.Users.Any(m => m.Email == loginModel.Email && m.Password == loginModel.Password);
                 UserModel userModel = new UserModel();
-                if(user != null)
+                if(Exist)
                 {
+                    Users user = _context.Users.Where(m => m.Email == loginModel.Email && m.Password == loginModel.Password).FirstOrDefault();
                     userModel = LoginHelper.ConvertUserToUserModel(user);
                 }
                 return userModel != null ? userModel : null;

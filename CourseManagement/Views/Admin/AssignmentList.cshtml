@@ -19,20 +19,32 @@
 </style>
 <div class="container mt-3">
     <div class="card mt-5">
-        <div class="card-body">
-            <table class="table table-bordered table-hover">
-                <thead class="table-primary">
-                    <tr>
-                        <th>Title</th>
-                        <th>Desription</th>
-                        <th>Date</th>
-                        <th>Course Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model != null)
-                    {
-                        foreach (var item in Model)
+        <div class="m-2 p-2">
+            <a class="rounded-4 border-5 bg-primary-subtle px-2 py-1" href="Index"><i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+        @if (Model == null || Model.Count() <= 0)
+        {
+            <div class="d-flex justify-content-center m-3 p-3 align-items-center">
+                <p class="fw-bold fs-2 text-secondary">No Record Found...</p>
+            </div>
+        }
+        else
+        {
+
+
+            <div class="card-body">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Title</th>
+                            <th>Desription</th>
+                            <th>Date</th>
+                            <th>Course Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
                         {
                             <tr>
                                 <td>@item.Title</td>
@@ -41,14 +53,11 @@
                                 <td>@item.CourseName</td>
                             </tr>
                         }
-                    }
-                </tbody>
-            </table>
-            <div>
-                <a href="Index" class="btn btn-primary btn-sm mt-3">Back To DashBoard</a>
-            </div>
-        </div>
 
+                    </tbody>
+                </table>
+            </div>
+        }
     </div>
 </div>
 
